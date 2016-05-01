@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang='en'>
 
-<!-- Mirrored from www.expressvpn.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Apr 2016 02:05:40 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <head>
 <meta charset='utf-8'>
 <link rel="stylesheet" media="screen" href="<?php echo base_url(); ?>assets/css/a.css" />
@@ -15,10 +14,10 @@
 <script src="https://cdn.optimizely.com/js/211502136.js"></script>
 
 <meta content='width=device-width,initial-scale=1,maximum-scale=1' name='viewport'>
-<meta content='ExpressVPN provides fast and secure world-wide VPN services with easy-to-use apps for PC, Mac, iOS, Android, and Linux. Unblock and secure your Internet today!' name='description'>
-<meta content='ExpressVPN - A Fast and Secure VPN' property='og:title'>
+<meta content='SudoVPN provides fast and secure world-wide VPN services with easy-to-use apps for PC, Mac, iOS, Android, and Linux. Unblock and secure your Internet today!' name='description'>
+<meta content='SudoVPN - A Fast and Secure VPN' property='og:title'>
 <meta content='//d39kb1fcbt5kgr.cloudfront.net/assets/fb-badge-245a25825083b90bcfe128cd091deaf3.png' property='og:image'>
-<meta content='ExpressVPN provides fast and secure world-wide VPN services with easy-to-use apps for PC, Mac, iOS, Android, and Linux. Unblock and secure your Internet today!' property='og:description'>
+<meta content='SudoVPN provides fast and secure world-wide VPN services with easy-to-use apps for PC, Mac, iOS, Android, and Linux. Unblock and secure your Internet today!' property='og:description'>
 
 <title>SUDO VPN - A Fast and Secure VPN</title>
 <!-- <link rel="alternate" hreflang="en" href="index.html" />
@@ -132,7 +131,7 @@ window._fbq.push(['track', 'Lead']);
     <span class='icon-bar'></span>
     <span class='icon-bar'></span>
     </button>
-    <a class="logo" href="index.html"><img alt="Get ExpressVPN" width="145" height="44" src="<?php echo base_url(); ?>assets/images/name.png" />
+    <a class="logo" href="index.html"><img alt="Get SudoVPN" width="145" height="44" src="<?php echo base_url(); ?>assets/images/name.png" />
     </a></div>
     <div class='collapse navbar-collapse'>
       <ul class='nav navbar-nav navbar-right'>
@@ -149,7 +148,7 @@ window._fbq.push(['track', 'Lead']);
           <a class="login" href="pl/users/sign_in.html">My Account</a>
         </li>
         <li>
-          <a class="btn-get btn btn-danger" id="header_get_expressvpn" href="pl/order.html"><span class='glyphicon glyphicon-download-alt'></span>Get SudoVPN NOW</a>
+          <a class="btn-get btn btn-danger" id="header_get_SudoVPN" href="pl/order.html"><span class='glyphicon glyphicon-download-alt'></span>Get SudoVPN NOW</a>
         </li>
       </ul>
     </div>
