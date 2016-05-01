@@ -142,7 +142,7 @@ window._fbq.push(['track', 'Lead']);
     <div class='collapse navbar-collapse'>
       <ul class='nav navbar-nav navbar-right'>
         <li>
-          <a href="home.html">Home</a>
+          <a href="<?php echo base_url(); ?>index.php/home/index">Home</a>
         </li>
         <li>
           <a href="support/index.html">Support</a>
@@ -151,7 +151,7 @@ window._fbq.push(['track', 'Lead']);
           <a href="blog/index.html">Blog</a>
         </li>
         <li>
-          <a class="login" href="pl/users/sign_in.html">My Account</a>
+          <a class="login" href="<?php echo base_url(); ?>index.php/home/login">My Account</a>
         </li>
         <li>
           <a class="btn-get btn btn-danger" id="header_get_expressvpn" href="pl/order.html"><span class='glyphicon glyphicon-download-alt'></span>Get SudoVPN NOW</a>
@@ -213,7 +213,7 @@ window._fbq.push(['track', 'Lead']);
       </form>
 
         <div class='links'>
-          <a href="../../dk/users/password/new.html">Forgot your password?</a>
+          <a href="<?php echo base_url(); ?>index.php/home/register">Create New Account</a>
           <br>
         </div>
       </div>
