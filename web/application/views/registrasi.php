@@ -164,36 +164,36 @@ window._fbq.push(['track', 'Lead']);
       <div class='container text-center'>
         <div class='row'>
 			<div class="span6">
-              <form class="form-horizontal" method="post" action="#">
+              <form class="form-horizontal" method="post" action="<?php echo base_url()?>Home/registers">
 				 <div class="control-group">
 					<label class="control-label" for="inputEmail">Full Name</label>
 					<div class="controls">
-					  <input name="name" type="text" id="inputName" placeholder="Full Name">
+					  <input name="name" type="text" id="inputName" placeholder="Full Name" required>
 					</div>
 				  </div>
 				  <div class="control-group">
 					<label class="control-label" for="inputEmail">Email</label>
 					<div class="controls">
-					  <input name="email" type="text" id="inputEmail" placeholder="Email">
+					  <input name="email" type="email" id="inputEmail" placeholder="Email" required>
 					</div>
 				  </div>
 				  <div class="control-group">
 					<label class="control-label" for="inputEmail">Phone</label>
 					<div class="controls">
-					  <input name="phone" type="text" id="inputEmail" placeholder="Phone">
+					  <input name="phone" type="text" id="inputEmail" placeholder="Phone" required>
 					</div>
 				  </div>
 				  <div class="control-group">
 					<label class="control-label" for="inputEmail">Address</label>
 					<div class="controls">
-					  <input name="address" type="text" id="inputEmail" placeholder="Address">
+					  <input name="address" type="text" id="inputEmail" placeholder="Address" required>
 					</div>
 				  </div>
 				  
 				  <div class="control-group">
 					<label class="control-label" for="inputPassword">Password</label>
 					<div class="controls">
-					  <input name="passwd" type="password" id="inputPassword" placeholder="Password">
+					  <input name="passwd" type="password" id="inputPassword" placeholder="Password" required>
 					</div>
 				  </div>
 				  <div class="control-group">
