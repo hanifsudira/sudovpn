@@ -247,14 +247,14 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="<?php echo base_url(); ?>assets/lte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Alexander Pierce</span>
+                  <span class="hidden-xs">Yahya Eka</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="<?php echo base_url(); ?>assets/lte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     <p>
-                      Alexander Pierce - Web Developer
+                     Yahya Eka - Web Developer
                       <small>Member since Nov. 2012</small>
                     </p>
                   </li>
@@ -287,7 +287,7 @@
               <img src="<?php echo base_url(); ?>assets/lte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
+              <p>Yahya Eka</p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -317,24 +317,21 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-                <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-                <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-                <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+                <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Indonesia Server</a></li>
+                <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Singapure Server</a></li>
+                <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> United States Server</a></li>
               </ul>
             </li>
 
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-pie-chart"></i>
-                <span>Download Config</span>
+                <span>Plans and Pricing</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-                <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-                <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-                <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+                <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> History Packet Plan</a></li>
+                <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Buy Packet Plan</a></li>
               </ul>
             </li>
 
@@ -365,8 +362,8 @@
               <!-- small box -->
               <div class="small-box bg-aqua">
                 <div class="inner">
-                  <h3>150</h3>
-                  <p>New Orders</p>
+                  <h3>Premium</h3>
+                  <p>Plan</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-bag"></i>
@@ -378,8 +375,8 @@
               <!-- small box -->
               <div class="small-box bg-green">
                 <div class="inner">
-                  <h3>53<sup style="font-size: 20px">%</sup></h3>
-                  <p>Bounce Rate</p>
+                  <h3>87Mbps</h3>
+                  <p>Bandwitdh</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-stats-bars"></i>
@@ -391,8 +388,8 @@
               <!-- small box -->
               <div class="small-box bg-yellow">
                 <div class="inner">
-                  <h3>44</h3>
-                  <p>User Registrations</p>
+                  <h3>ON</h3>
+                  <p>Safe Connection</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
@@ -404,8 +401,8 @@
               <!-- small box -->
               <div class="small-box bg-red">
                 <div class="inner">
-                  <h3>65</h3>
-                  <p>Unique Visitors</p>
+                  <h3>30<sup style="font-size: 20px">%</sup></h3>
+                  <p>Quota Remining</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-pie-graph"></i>
