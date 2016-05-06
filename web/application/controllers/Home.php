@@ -11,6 +11,11 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('login');
 	}
+
+	public function dashboard_client()
+	{
+		$this->load->view('dashboard_client');
+	}
 	public function logins()
 	{
         $id = array(
@@ -19,7 +24,7 @@ class Home extends CI_Controller {
         );
 		$this->load->model('sudovpn');
 		$data= $this->sudovpn->login($id);
-		if($data)return redirect(base_url());       
+		if($data)return redirect(base_url()."/index.php/home/dashboard_client");       
         else return redirect(base_url()."/index.php/home/login");       
 	}
     public function register()
