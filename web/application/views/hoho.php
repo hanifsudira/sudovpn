@@ -134,23 +134,27 @@ window._fbq.push(['track', 'Lead']);
     <div class='container'>
       <div class='row-fluid'>
         <div class='span4 offset4'>
-          <form accept-charset="UTF-8" action="<?php echo base_url()?>Home/logins" class="new_user" id="new_user" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="83XB3tOTNc32k3lTEDQcXvHfs1TRPTYQupERDaRSlx8=" /></div><h2>Sign In</h2>
+          <form accept-charset="UTF-8" action="<?php echo base_url()?>Home/registers" class="new_user" id="new_user" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="83XB3tOTNc32k3lTEDQcXvHfs1TRPTYQupERDaRSlx8=" /></div><h2>Sign Up</h2>
 
-            <label for="user_email">E-mail:</label>
-            <input autofocus="autofocus" class="required email" id="user_email" name="user[email]" size="30" type="email" value="" required/>
-            <label for="user_password">Password:</label>
-            <input class="required" id="user_password" name="user[password]" size="30" type="password" required />
+            <label class="control-label" for="inputEmail">Full Name</label>
+            <input name="name" type="text" id="inputName" placeholder="Full Name" required>
+
+            <label class="control-label" for="inputEmail">Email</label>
+            <input name="email" type="email" id="inputEmail" placeholder="Email" required>
+
+            <label class="control-label" for="inputEmail">Phone</label>
+            <input name="phone" type="text" id="inputEmail" placeholder="Phone" required>
+
+            <label class="control-label" for="inputEmail">Address</label>
+            <input name="address" type="text" id="inputEmail" placeholder="Address" required>
+
+            <label class="control-label" for="inputPassword">Password</label>
+            <input name="passwd" type="password" id="inputPassword" placeholder="Password" required>
+
             <br>
-            <input class="bttn bttn-green button button-small" name="commit" type="submit" value="   Sign In   " />
+            <input class="bttn bttn-green button button-small" name="commit" type="submit" value="Sign Up" />
           </form>
 
-          <div class='links'>
-            <a href="#">Forgot your password?</a>
-            <br>
-            <a href="#">Need help?</a>
-            <br>
-            <a href="<?php echo base_url(); ?>index.php/home/register">New account</a>
-          </div>
         </div>
       </div>
     </div>
