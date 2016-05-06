@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$config['base_url'] = 'http://localhost:5121/cloud/sudovpn/web/';
+$config['base_url'] = 'http://localhost/sudovpn/web/';
 
 
 /*
