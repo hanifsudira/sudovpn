@@ -148,7 +148,7 @@ window._fbq.push(['track', 'Lead']);
           <a class="login" href="<?php echo base_url(); ?>index.php/home/login">My Account</a>
         </li>
         <li>
-          <a class="btn-get btn btn-danger" id="header_get_SudoVPN" href="pl/order.html"><span class='glyphicon glyphicon-download-alt'></span>Get SudoVPN NOW</a>
+          <a class="btn-get btn btn-danger" id="header_get_SudoVPN" href="<?php echo base_url(); ?>index.php/home/register"><span class='glyphicon glyphicon-download-alt'></span>Get SudoVPN NOW</a>
         </li>
       </ul>
     </div>

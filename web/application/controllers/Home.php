@@ -11,6 +11,10 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('login');
 	}
+	public function hoho()
+	{
+		$this->load->view('hoho');
+	}
 
 	public function dashboard_client()
 	{
