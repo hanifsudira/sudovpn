@@ -175,6 +175,7 @@ Polski
 </div>
 
 <div class='login'>
+<<<<<<< HEAD:web/application/views/sign_in.html
   <div class='container'>
     <div class='row-fluid'>
       <div class='span4 offset4'>
@@ -187,6 +188,20 @@ Polski
         <br>
         <input class="bttn bttn-green button button-small" name="commit" type="submit" value="   Sign In   " />
       </form>
+=======
+<div class='container'>
+<div class='row-fluid'>
+<div class='span4 offset4'>
+<form accept-charset="UTF-8" action="<?php echo base_url()?>Home/proses_login" class="new_user" id="new_user" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="83XB3tOTNc32k3lTEDQcXvHfs1TRPTYQupERDaRSlx8=" /></div><h2>Sign In</h2>
+
+<label for="user_email">E-mail:</label>
+<input autofocus="autofocus" class="required email" id="user_email" name="user[email]" size="30" type="text" value="" />
+<label for="user_password">Password</label>
+<input class="required" id="user_password" name="user[password]" size="30" type="password" />
+<br>
+<input class="bttn bttn-green button button-small" name="commit" type="submit" value="   Sign In   " />
+</form>
+>>>>>>> 2a0885ca2c95ad7c7a1340539513655e69ac0c9a:web/application/views/sign_in.php
 
         <div class='links'>
           <a href="../../dk/users/password/new.html">Forgot your password?</a>
