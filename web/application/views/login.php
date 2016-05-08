@@ -100,11 +100,11 @@ window._fbq.push(['track', 'Lead']);
       <div class='navbar'>
         <div class='navbar-inner'>
           <div class='container'>
-            <a href="<?php echo base_url(); ?>index.php/home" class="logo"><img alt="Get ExpressVPN" height="44" src="<?php echo base_url(); ?>assets/images/name.png" width="145" /></a><div class='nav-collapse collapse'>
-            
+            <a href="<?php echo base_url(); ?>home" class="logo"><img alt="Get ExpressVPN" height="44" src="<?php echo base_url(); ?>assets/images/name.png" width="145" /></a><div class='nav-collapse collapse'>
+
             <ul class='nav'>
               <li>
-                <a href="<?php echo base_url(); ?>index.php/home/index">Home</a>
+                <a href="<?php echo base_url(); ?>home/index">Home</a>
               </li>
 
               <li>
@@ -116,11 +116,11 @@ window._fbq.push(['track', 'Lead']);
               </li>
 
               <li>
-                <a class="login" href="<?php echo base_url(); ?>index.php/home/login">My Account</a>
+                <a class="login" href="<?php echo base_url(); ?>home/login">My Account</a>
               </li>
 
               <li>
-                <a class="btn-get btn btn-danger" id="header_get_expressvpn" href="<?php echo base_url(); ?>index.php/home/register"><span class='glyphicon glyphicon-download-alt'></span>Get SUDO VPN Now</a>
+                <a class="btn-get btn btn-danger" id="header_get_expressvpn" href="<?php echo base_url(); ?>home/register"><span class='glyphicon glyphicon-download-alt'></span>Get SUDO VPN Now</a>
               </li>
             </ul>
             </div>
@@ -134,7 +134,7 @@ window._fbq.push(['track', 'Lead']);
     <div class='container'>
       <div class='row-fluid'>
         <div class='span4 offset4'>
-          <form accept-charset="UTF-8" action="<?php echo base_url()?>Home/logins" class="new_user" id="new_user" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="83XB3tOTNc32k3lTEDQcXvHfs1TRPTYQupERDaRSlx8=" /></div><h2>Sign In</h2>
+          <form accept-charset="UTF-8" action="http://sudovpn.id:5002/validateLogin" class="new_user" id="new_user" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="83XB3tOTNc32k3lTEDQcXvHfs1TRPTYQupERDaRSlx8=" /></div><h2>Sign In</h2>
 
             <label for="user_email">E-mail:</label>
             <input autofocus="autofocus" class="required email" id="user_email" name="user[email]" size="30" type="email" value="" required/>
@@ -149,7 +149,7 @@ window._fbq.push(['track', 'Lead']);
             <br>
             <a href="#">Need help?</a>
             <br>
-            <a href="<?php echo base_url(); ?>index.php/home/register">New account</a>
+            <a href="<?php echo base_url(); ?>home/register">New account</a>
           </div>
         </div>
       </div>
