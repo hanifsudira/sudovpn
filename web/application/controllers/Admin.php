@@ -44,8 +44,8 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/compose');
 		$this->load->view('admin/footer');
 	}
-	public function register()
+	public function login()
 	{
-		$this->load->view('registrasi');
+		$this->load->view('loginadmin');
 	}
 }
