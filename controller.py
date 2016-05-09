@@ -114,12 +114,38 @@ def logout():
 	session.pop('user',None)
 	return redirect('/')
 
+# @app.route('/validateLogin',methods=['POST'])
+# def validateLogin():
+# 	try:
+# 		_username = request.form['user[email]']
+# 		_password = request.form['user[password]']
+#
+#
+# 		# connect to mysql
+#
+# 		con = mysql.connect()
+# 		cursor = con.cursor()
+# 		cursor.callproc('SP_Login',(_username,_password))
+# 		data = cursor.fetchall()
+#
+# 		if len(data) > 0:
+# 			return redirect('http://sudovpn.id/home/dashboard_client')
+# 		else:
+# 			return redirect('http://sudovpn.id/home/login')
+#
+#
+# 	except Exception as e:
+# 		return redirect('http://sudovpn.id/home/login')
+# 	finally:
+# 		cursor.close()
+# 		con.close()
+
 @app.route('/validateLogin',methods=['POST'])
 def validateLogin():
 	try:
 		_username = request.form['user[email]']
 		_password = request.form['user[password]']
-		
+
 
 		# connect to mysql
 
@@ -129,7 +155,19 @@ def validateLogin():
 		data = cursor.fetchall()
 
 		if len(data) > 0:
-			return redirect('http://sudovpn.id/home/dashboard_client')
+			wishes_dict = []
+			for data in wishes:
+				wish_dict = {
+							'id_user': str(data[0]),
+							'email': data[1],
+				}
+				wishes_dict.append(wish_dict)
+
+			url = 'http://sudovpn.id/home/logins'
+			headers = {'Content-Type': 'application/json', 'Accept':'application/json'}
+			r = requests.post(url,data=json.dumps(wishes_dict), headers=headers)
+
+			return r.content
 		else:
 			return redirect('http://sudovpn.id/home/login')
 

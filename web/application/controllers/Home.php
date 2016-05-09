@@ -6,24 +6,7 @@ class Home extends CI_Controller {
     public function index(){
 		$this->load->view('home');
 	}
-    
-    public function __construct() {
-        parent::__construct();
 
-        // Load form helper library
-        $this->load->helper('form');
-
-        // Load session library
-        $this->load->library('session');
-
-        // Load validation library
-        $this->load->library('form_validation');
-        }
-
-        // Show session demo page
-        public function session_demo_page_show() {
-        $this->load->view('home');
-    }
 
     // Set values in session
     public function set_session_value() {
@@ -82,17 +65,27 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('dashboard_client');
 	}
-/*	public function logins()
+	public function logins()
 	{
-        $id = array(
-            'email' => $this->input->post('user[email]'),
-            'password' => $this->input->post('user[password]') 
-        );
-		$this->load->model('sudovpn');
-		$data= $this->sudovpn->login($id);
-		if($data)return redirect(base_url()."/home/dashboard_client");       
-        else return redirect(base_url()."/home/login");       
-	}*/
+
+        header('Content-type: application/json');
+
+        $data = json_decode(file_get_contents('php://input'),true);
+
+        foreach($data as $item){
+            $id_user=$item['id_user'];
+            $email=$item['email'];
+        }
+
+        $newdata = array(
+				'id_user' => $id_user,
+				'email' => $email,
+				'logged_in'  => TRUE);
+
+        $this->session->set_userdata($newdata);
+        redirect('dashboard_client');
+	}
+
     public function register()
 	{
 		$this->load->view('registrasi');
