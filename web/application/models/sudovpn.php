@@ -1,6 +1,6 @@
 <?php
 
-Class sudovpn extends CI_Model {
+/*Class sudovpn extends CI_Model {
     function __construct() {
         parent::__construct();
         $this->load->database('default','true');
@@ -22,4 +22,4 @@ Class sudovpn extends CI_Model {
         $query = $this->db->query("call SP_Register('".$fullname."','".$email."','".$phone."','".$address."','".$password."')");
         return $query;
     }
-}
+}*/

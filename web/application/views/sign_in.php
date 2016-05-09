@@ -175,6 +175,20 @@ Polski
 </div>
 
 <div class='login'>
+<<<<<<< HEAD:web/application/views/sign_in.html
+  <div class='container'>
+    <div class='row-fluid'>
+      <div class='span4 offset4'>
+      <form accept-charset="UTF-8" action="https://www.expressvpn.com/users/sign_in" class="new_user" id="new_user" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="83XB3tOTNc32k3lTEDQcXvHfs1TRPTYQupERDaRSlx8=" /></div><h2>Sign In</h2>
+
+        <label for="user_email">E-mail:</label>
+        <input autofocus="autofocus" class="required email" id="user_email" name="user[email]" size="30" type="text" value="" />
+        <label for="user_password">Hasło:</label>
+        <input class="required" id="user_password" name="user[password]" size="30" type="password" />
+        <br>
+        <input class="bttn bttn-green button button-small" name="commit" type="submit" value="   Sign In   " />
+      </form>
+=======
 <div class='container'>
 <div class='row-fluid'>
 <div class='span4 offset4'>
@@ -187,21 +201,23 @@ Polski
 <br>
 <input class="bttn bttn-green button button-small" name="commit" type="submit" value="   Sign In   " />
 </form>
+>>>>>>> 2a0885ca2c95ad7c7a1340539513655e69ac0c9a:web/application/views/sign_in.php
 
-<div class='links'>
-<a href="../../dk/users/password/new.html">Forgot your password?</a>
-<br>
-<a href="../../support/index.html">Need help?</a>
-<br>
-<a href="../order.html">New account</a>
-</div>
-</div>
-</div>
-</div>
+        <div class='links'>
+          <a href="../../dk/users/password/new.html">Forgot your password?</a>
+          <br>
+          <a href="../../support/index.html">Need help?</a>
+          <br>
+          <a href="../order.html">New account</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 </div>
 </div>
+
 <div class='footer'>
 <div class='container'>
 <div class='menu row-fluid'>
@@ -358,3 +374,6 @@ a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
 
 <!-- Mirrored from www.expressvpn.com/pl/users/sign_in by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Apr 2016 02:18:46 GMT -->
 </html>
+
+
+<!-- lalala yeyey -->
