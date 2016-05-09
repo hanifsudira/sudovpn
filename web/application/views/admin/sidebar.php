@@ -45,7 +45,7 @@
                
               </a>
               <ul class="treeview-menu">
-                <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i>Create Packet</a></li>
+                <li><a href="<?php echo base_url() ?>admin/create_paket"><i class="fa fa-circle-o"></i>Create Packet</a></li>
                 <li><a href="<?php echo base_url() ?>admin/paket"><i class="fa fa-circle-o"></i>View Packet</a></li>
               </ul>
             </li>
