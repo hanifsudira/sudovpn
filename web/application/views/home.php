@@ -171,38 +171,13 @@ window._fbq.push(['track', 'Lead']);
         </div>
       </div>
     </div>
-<?php
-if (isset($read_set_value)) {
-echo $read_set_value;
-}
-if (isset($message_display)) {
-echo $message_display;
-}
-?>
-    
+
 <section class='reasons'>
   <div class='container'>
     <div class='row'>
       <div class='col-sm-12'>
-          <?php echo form_open('Home/set_session_value'); ?>
-            <div class='error_msg'>
-            <?php echo validation_errors(); ?>
-            </div>
-            <?php echo form_label('Enter a session value :');?>
-            <input type="text" name="session_value" />
-            <input type="submit" value="Set Session Value" id='set_button'/>
-            <?php echo form_close(); ?>
-
-            <?php echo form_open('Home/read_session_value'); ?>
-            <input type="submit" value="Read Session Value" id="read_button" />
-            <?php echo form_close(); ?>
-
-            <?php echo form_open('Home/unset_session_value'); ?>
-            <input type="submit" value="Unset Session Value" id="unset_button" />
-          <?php echo form_close(); ?>
-          <h2 class='text-center'>The Fastest and Stable VPN on Earth</h2>
-      
-    </div>
+        <h2 class='text-center'>The Fastest and Stable VPN on Earth</h2>
+      </div>
     </div>
 
     <div class='row text-center'>

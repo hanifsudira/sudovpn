@@ -11,13 +11,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 |	http://example.com/
 |
-| If this is not set then CodeIgniter will try guess the protocol, domain
-| and path to your installation. However, you should always configure this
-| explicitly and never rely on auto-guessing, especially in production
-| environments.
+| WARNING: You MUST set this value!
+|
+| If it is not set, then CodeIgniter will try guess the protocol and path
+| your installation, but due to security concerns the hostname will be set
+| to $_SERVER['SERVER_ADDR'] if available, or localhost otherwise.
+| The auto-detection mechanism exists only for convenience during
+| development and MUST NOT be used in production!
+|
+| If you need to allow multiple domains, remember that this file is still
+| a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://sudovpn.id/';
+
+$config['base_url'] = 'http://localhost/web/';
 
 /*
 |--------------------------------------------------------------------------
@@ -344,6 +351,9 @@ $config['encryption_key'] = '';
 |
 |	Whether to match the user's IP address when reading the session data.
 |
+|	WARNING: If you're using the database driver, don't forget to update
+|	         your session table's PRIMARY KEY when changing this setting.
+|
 | 'sess_time_to_update'
 |
 |	How many seconds between CI regenerating the session ID.
@@ -360,10 +370,10 @@ $config['encryption_key'] = '';
 */
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
-$config['sess_expiration'] = 7200000000000;
+$config['sess_expiration'] = 7200;
 $config['sess_save_path'] = NULL;
 $config['sess_match_ip'] = FALSE;
-$config['sess_time_to_update'] = 7200000000000;
+$config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
 
 /*
@@ -432,7 +442,7 @@ $config['global_xss_filtering'] = FALSE;
 $config['csrf_protection'] = FALSE;
 $config['csrf_token_name'] = 'csrf_test_name';
 $config['csrf_cookie_name'] = 'csrf_cookie_name';
-$config['csrf_expire'] = 7200000000000;
+$config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = TRUE;
 $config['csrf_exclude_uris'] = array();
 
