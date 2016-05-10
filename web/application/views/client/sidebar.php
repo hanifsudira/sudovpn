@@ -52,7 +52,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> History Packet Plan</a></li>
-                <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Buy Packet Plan</a></li>
+                <li><a href="<?php echo site_url('client/plans');?>"><i class="fa fa-circle-o"></i> Buy Packet Plan</a></li>
               </ul>
             </li>
 

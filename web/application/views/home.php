@@ -176,15 +176,10 @@ window._fbq.push(['track', 'Lead']);
   <div class='container'>
     <div class='row'>
       <div class='col-sm-12'>
-<<<<<<< HEAD
-        <h2 class='text-center'>The Fastest and Stable VPN on Earth</h2>
-      </div>
-=======
 
           <h2 class='text-center'>The Fastest and Stable VPN on Earth</h2>
       
     </div>
->>>>>>> 407022935244d7694421545c11fa9204c7b2da86
     </div>
 
     <div class='row text-center'>

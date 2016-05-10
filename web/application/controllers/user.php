@@ -55,16 +55,16 @@
                     <!-- Post -->
                        <div class="row">
             <div class="col-xs-12">
-              <div class="box box-solid collapsed-box">
+              <div class="box box-solid">
                 <div class="box-header">
                   <i class="fa fa-bar-chart-o"></i>
                   <h3 class="box-title">Sources usage</h3>
                    <div class="box-tools pull-right">
-                    <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-default btn-sm" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-minus"></i></button>
                     
                   </div>
                 </div><!-- /.box-header -->
-                <div class="box-body" style="display:none;">
+                <div class="dropdown-menu">
                   <div class="row">
                     <div class="col-md-3 col-sm-6 col-xs-6 text-center">
                       <input type="text" class="knob" value="30" data-width="90" data-height="90" data-fgColor="#3c8dbc" data-readonly="true">
@@ -120,7 +120,6 @@
 					  <th>Status</th>
                       <th>Action</th>
                     </tr>
-					
                     <tr>
                       <td>1</td>
                       <td>Gold</td>
@@ -132,37 +131,9 @@
 									<a class="btn btn-primary btn-xs">View</a>
 									<a class="btn btn-danger btn-xs">Edit</a>
 						</div>
-						
-						</td>
-						 
-            
-					  <div class="box box-solid collapsed-box">
-						<div class="box-header">
-						  <i class="fa fa-bar-chart-o"></i>
-						  <h3 class="box-title">Sources usage</h3>
-						   <div class="box-tools pull-right">
-							<button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-							
-						  </div>
-						</div><!-- /.box-header -->
-						<div class="box-body" style="display:none;">
-						  <div class="row">
-							
-							<div class="col-md-3 col-sm-6 col-xs-6 text-center">
-							  <input type="text" class="knob" value="30" data-width="120" data-height="120" data-fgColor="#00c0ef">
-							  <div class="knob-label">Data Usage</div>
-							</div><!-- ./col -->
-						   
-						   
-						  </div><!-- /.row -->
-						</div><!-- /.box-body -->
-					  </div><!-- /.box -->
-  
-
+					</td>
                     </tr>
-                   <tr>
-					sss
-				   </tr>
+                   
                    
                   </table>
                 </div><!-- /.box-body -->

@@ -32,9 +32,8 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/member',$data);
 		$this->load->view('admin/footer');
 	}
-<<<<<<< HEAD
-	public function view()
-=======
+
+
 	public function tampil()
 	{
 		header('Content-type: application/json');
@@ -49,24 +48,25 @@ class Admin extends CI_Controller {
 	}
 
 	public function view($id)
->>>>>>> 407022935244d7694421545c11fa9204c7b2da86
 	{
 		if(!($this->session->userdata('logged_in') == TRUE && $this->session->userdata('email') == 'admin@gmail.com')) {
 			return redirect(site_url('admin/login'));
 		}
-			$url="http://sudovpn.id:5002/listperid/$id";
+			$id_=(int)$id;
+			$url="http://sudovpn.id:5002/listperid/$id_";
 			$json = file_get_contents($url);
 			$temp= json_decode($json, TRUE);
 		foreach($temp as $item){
 			$data['list']=$item;
 		}
-
-
+		var_dump($temp);
+		
 		$this->load->view('admin/head');
 		$this->load->view('admin/nav');
 		$this->load->view('admin/sidebar');
 		$this->load->view('admin/user',$data);
 		$this->load->view('admin/footer');
+		
 	}
 	public function mail()
 	{

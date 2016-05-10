@@ -7,11 +7,6 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('home');
 	}
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 407022935244d7694421545c11fa9204c7b2da86
 	public function login()
 	{
 		$this->load->view('login');
@@ -32,19 +27,7 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('client/dashboard_client');
 	}
-<<<<<<< HEAD
-/*	public function logins()
-	{
-        $id = array(
-            'email' => $this->input->post('user[email]'),
-            'password' => $this->input->post('user[password]') 
-        );
-		$this->load->model('sudovpn');
-		$data= $this->sudovpn->login($id);
-		if($data)return redirect(base_url()."/home/dashboard_client");       
-        else return redirect(base_url()."/home/login");       
-	}*/
-=======
+
 	public function logins($id)
 	{
         $newdata = array(
@@ -54,7 +37,6 @@ class Home extends CI_Controller {
         return redirect(site_url('client'));
 	}
 
->>>>>>> 407022935244d7694421545c11fa9204c7b2da86
     public function register()
 	{
 		$this->load->view('registrasi');
