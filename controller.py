@@ -23,6 +23,14 @@ def main():
 def showSignUp():
 	return render_template('signup.html')
 
+@app.route('/check')
+def check():
+	print session.get('user')
+	if session.get('user'):
+		return json.dumps({'error':'masih ada'})
+	else:
+		return json.dumps({'error':'tidak ada'})
+
 @app.route('/sucess')
 def sucess():
 	return render_template('sucess.html')
@@ -71,9 +79,9 @@ def signUp():
 
 		# validate the received values
 		if _name and _email and _password:
-			
+
 			# All Good, let's call MySQL
-			
+
 			conn = mysql.connect()
 			cursor = conn.cursor()
 			_hashed_password = generate_password_hash(_password)
@@ -124,13 +132,17 @@ def validateLogin():
 		data = cursor.fetchall()
 
 		if len(data) > 0:
-			return redirect('http://sudovpn.id/home')
+			id_ = data[0][0]
+
+			print id_
+			return redirect("http://sudovpn.id/home/logins/"+str(id_))
+
 		else:
 			return redirect('http://sudovpn.id/home/login')
 
 
 	except Exception as e:
-		return redirect('http://sudovpn.id/home/login')
+		return json.dumps({'error':str(e)})
 	finally:
 		cursor.close()
 		con.close()
