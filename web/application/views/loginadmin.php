@@ -45,7 +45,7 @@
                   <h3 class="box-title">Login Admin</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" action="#">
+                <form class="form-horizontal" method="post" action="<?php echo site_url('admin/logins')?>">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">Email</label>

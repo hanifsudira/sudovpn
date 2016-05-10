@@ -23,6 +23,14 @@ def main():
 def showSignUp():
 	return render_template('signup.html')
 
+@app.route('/getIdentitas')
+def getIdentitas():
+	print session.get('user')
+	if session.get('user'):
+		return json.dumps({'error':'masih ada'})
+	else:
+		return json.dumps({'error':'tidak ada'})
+
 @app.route('/sucess')
 def sucess():
 	return render_template('sucess.html')
@@ -31,7 +39,6 @@ def sucess():
 @app.route('/tampil')
 def tampil():
 	try:
-
 		con = mysql.connect()
 		cursor = con.cursor()
 		cursor.callproc('SP_ListAllUser',())
@@ -62,6 +69,59 @@ def tampil():
 
 
 
+@app.route('/listperid/<int:page_id>',methods=['GET'])
+def listperid(page_id):
+	try:
+		con = mysql.connect()
+		cursor = con.cursor()
+		cursor.callproc('SP_List_PerID',(page_id))
+		wishes = cursor.fetchall()
+
+		wishes_dict = []
+		for wish in wishes:
+			wish_dict = {
+						'id_user': str(wish[0]),
+						'email': wish[1],
+						'password': wish[2],
+						'fullname': wish[3],
+						'phone': wish[4],
+						'address': wish[5],
+						'status': str(wish[6]),
+						'time': wish[7],
+			}
+			wishes_dict.append(wish_dict)
+
+		return json.dumps(wishes_dict)
+	except Exception as e:
+		return json.dumps({'error':str(e)})
+
+@app.route('/listmember')
+def listmember():
+	try:
+		con = mysql.connect()
+		cursor = con.cursor()
+		cursor.callproc('SP_ListAllUser',())
+		wishes = cursor.fetchall()
+
+		wishes_dict = []
+		for wish in wishes:
+			wish_dict = {
+						'id_user': str(wish[0]),
+						'email': wish[1],
+						'password': wish[2],
+						'fullname': wish[3],
+						'phone': wish[4],
+						'address': wish[5],
+						'status': str(wish[6]),
+						'time': wish[7],
+			}
+			wishes_dict.append(wish_dict)
+
+		return json.dumps(wishes_dict)
+	except Exception as e:
+		return json.dumps({'error':str(e)})
+
+
 @app.route('/signUp',methods=['POST'])
 def signUp():
 	try:
@@ -71,9 +131,9 @@ def signUp():
 
 		# validate the received values
 		if _name and _email and _password:
-			
+
 			# All Good, let's call MySQL
-			
+
 			conn = mysql.connect()
 			cursor = conn.cursor()
 			_hashed_password = generate_password_hash(_password)
@@ -109,37 +169,6 @@ def userHome():
 		return render_template('error.html',error = 'Unauthorized Access')
 
 
-@app.route('/logout')
-def logout():
-	session.pop('user',None)
-	return redirect('/')
-
-# @app.route('/validateLogin',methods=['POST'])
-# def validateLogin():
-# 	try:
-# 		_username = request.form['user[email]']
-# 		_password = request.form['user[password]']
-#
-#
-# 		# connect to mysql
-#
-# 		con = mysql.connect()
-# 		cursor = con.cursor()
-# 		cursor.callproc('SP_Login',(_username,_password))
-# 		data = cursor.fetchall()
-#
-# 		if len(data) > 0:
-# 			return redirect('http://sudovpn.id/home/dashboard_client')
-# 		else:
-# 			return redirect('http://sudovpn.id/home/login')
-#
-#
-# 	except Exception as e:
-# 		return redirect('http://sudovpn.id/home/login')
-# 	finally:
-# 		cursor.close()
-# 		con.close()
-
 @app.route('/validateLogin',methods=['POST'])
 def validateLogin():
 	try:
@@ -155,28 +184,60 @@ def validateLogin():
 		data = cursor.fetchall()
 
 		if len(data) > 0:
-			wishes_dict = []
-			for data in wishes:
-				wish_dict = {
-							'id_user': str(data[0]),
-							'email': data[1],
-				}
-				wishes_dict.append(wish_dict)
+			id_ = data[0][0]
 
-			url = 'http://sudovpn.id/home/logins'
-			headers = {'Content-Type': 'application/json', 'Accept':'application/json'}
-			r = requests.post(url,data=json.dumps(wishes_dict), headers=headers)
+			print id_
+			return redirect("http://sudovpn.id/home/logins/"+str(id_))
 
-			return r.content
 		else:
 			return redirect('http://sudovpn.id/home/login')
 
 
 	except Exception as e:
-		return redirect('http://sudovpn.id/home/login')
+		return json.dumps({'error':str(e)})
 	finally:
 		cursor.close()
 		con.close()
+
+# @app.route('/validateLogin',methods=['POST'])
+# def validateLogin():
+# 	try:
+# 		_username = request.form['user[email]']
+# 		_password = request.form['user[password]']
+#
+#
+# 		# connect to mysql
+#
+# 		con = mysql.connect()
+# 		cursor = con.cursor()
+# 		cursor.callproc('SP_Login',(_username,_password))
+# 		data = cursor.fetchall()
+#
+# 		print data;
+#
+# 		if len(data) > 0:
+# 			wishes_dict = []
+# 			for data in wishes:
+# 				wish_dict = {
+# 							'id_user': str(data[0]),
+# 							'email': data[1],
+# 				}
+# 				wishes_dict.append(wish_dict)
+#
+# 			url = 'http://sudovpn.id/home/logins'
+# 			headers = {'Content-Type': 'application/json', 'Accept':'application/json'}
+# 			r = requests.post(url,data=json.dumps(wishes_dict), headers=headers)
+#
+# 			return r.content
+# 		else:
+# 			return redirect('http://sudovpn.id/home/login')
+#
+#
+# 	except Exception as e:
+# 		return redirect('http://sudovpn.id/home/login')
+# 	finally:
+# 		cursor.close()
+# 		con.close()
 
 
 @app.route('/validateRegister',methods=['POST'])
