@@ -61,29 +61,38 @@ class Home extends CI_Controller {
 		$this->load->view('login');
 	}
 
+    public function logout()
+    {
+        $newdata = array(
+            'id_user' => '',
+            'email' => '',
+            'logged_in'  => FALSE);
+
+        $this->session->unset_userdata($newdata);
+        $this->load->view('login');
+    }
+
 	public function dashboard_client()
 	{
-		$this->load->view('dashboard_client');
+		$this->load->view('client/dashboard_client');
 	}
 	public function logins()
 	{
-
-        header('Content-type: application/json');
-
-        $data = json_decode(file_get_contents('php://input'),true);
-
-        foreach($data as $item){
-            $id_user=$item['id_user'];
-            $email=$item['email'];
-        }
-
-        $newdata = array(
-				'id_user' => $id_user,
-				'email' => $email,
-				'logged_in'  => TRUE);
-
-        $this->session->set_userdata($newdata);
-        redirect('dashboard_client');
+        $json = file_get_contents('http://sudovpn.id:5002/check'); // this WILL do an http request for you
+        $data = json_decode($json);
+        var_dump($data);
+//        foreach($data as $item){
+//            $id_user=$item['id_user'];
+//            $email=$item['email'];
+//        }
+//
+//        $newdata = array(
+//				'id_user' => $id_user,
+//				'email' => $email,
+//				'logged_in'  => TRUE);
+//        //var_dump($newdata);
+//        $this->session->set_userdata($newdata);
+        //return redirect('http://sudovpn.id/home');
 	}
 
     public function register()
