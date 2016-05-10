@@ -17,12 +17,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://sudovpn.id/';
+$config['base_url'] = 'http://localhost:5121/cloud/sudovpn/web/';
 
-<<<<<<< HEAD
-$config['base_url'] = 'http://localhost:5121/cloud/sudovpn/web';
-=======
->>>>>>> c47abe7b0e672b08a6ed0c6e321489e79808d9bb
+
 /*
 |--------------------------------------------------------------------------
 | Index File

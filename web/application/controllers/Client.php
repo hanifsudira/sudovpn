@@ -10,4 +10,12 @@ class Client extends CI_Controller {
 		$this->load->view('client/footer');
 	
 	}
+
+	public function plans(){
+		$this->load->view('client/head');
+		$this->load->view('client/nav');
+		$this->load->view('client/sidebar');
+		$this->load->view('client/plans');
+		$this->load->view('client/footer');
+	}
 }
