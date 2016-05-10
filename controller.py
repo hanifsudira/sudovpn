@@ -23,8 +23,8 @@ def main():
 def showSignUp():
 	return render_template('signup.html')
 
-@app.route('/check')
-def check():
+@app.route('/getIdentitas')
+def getIdentitas():
 	print session.get('user')
 	if session.get('user'):
 		return json.dumps({'error':'masih ada'})
@@ -39,7 +39,6 @@ def sucess():
 @app.route('/tampil')
 def tampil():
 	try:
-
 		con = mysql.connect()
 		cursor = con.cursor()
 		cursor.callproc('SP_ListAllUser',())
@@ -68,6 +67,59 @@ def tampil():
 	except Exception as e:
 		return render_template('error.html', error = str(e))
 
+
+
+@app.route('/listperid/<int:page_id>',methods=['GET'])
+def listperid(page_id):
+	try:
+		con = mysql.connect()
+		cursor = con.cursor()
+		cursor.callproc('SP_List_PerID',(page_id))
+		wishes = cursor.fetchall()
+
+		wishes_dict = []
+		for wish in wishes:
+			wish_dict = {
+						'id_user': str(wish[0]),
+						'email': wish[1],
+						'password': wish[2],
+						'fullname': wish[3],
+						'phone': wish[4],
+						'address': wish[5],
+						'status': str(wish[6]),
+						'time': wish[7],
+			}
+			wishes_dict.append(wish_dict)
+
+		return json.dumps(wishes_dict)
+	except Exception as e:
+		return json.dumps({'error':str(e)})
+
+@app.route('/listmember')
+def listmember():
+	try:
+		con = mysql.connect()
+		cursor = con.cursor()
+		cursor.callproc('SP_ListAllUser',())
+		wishes = cursor.fetchall()
+
+		wishes_dict = []
+		for wish in wishes:
+			wish_dict = {
+						'id_user': str(wish[0]),
+						'email': wish[1],
+						'password': wish[2],
+						'fullname': wish[3],
+						'phone': wish[4],
+						'address': wish[5],
+						'status': str(wish[6]),
+						'time': wish[7],
+			}
+			wishes_dict.append(wish_dict)
+
+		return json.dumps(wishes_dict)
+	except Exception as e:
+		return json.dumps({'error':str(e)})
 
 
 @app.route('/signUp',methods=['POST'])

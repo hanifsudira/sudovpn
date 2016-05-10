@@ -34,7 +34,7 @@ class Home extends CI_Controller {
 				'id_user' => $id,
 				'logged_in'  => TRUE);
         $this->session->set_userdata($newdata);
-        return redirect('http://sudovpn.id/client/');
+        return redirect(site_url('client'));
 	}
 
     public function register()

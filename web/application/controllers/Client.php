@@ -7,13 +7,11 @@ class Client extends CI_Controller {
 	{
 		parent::__construct();
 		if(!($this->session->userdata('logged_in') == TRUE || $this->session->userdata('id_user') != '')){
-			return redirect('http://sudovpn.id/home/login');
+			return redirect(site_url('home/login'));
 		}
 	}
 
 	public function index(){
-//		if(!($this->session->userdata('logged_in') == TRUE || $this->session->userdata('id_user') != '')){
-//			return redirect('http://sudovpn.id/home/login');
 
 		$this->load->view('client/head');
 		$this->load->view('client/nav');
