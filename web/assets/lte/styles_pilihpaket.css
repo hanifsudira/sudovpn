@@ -20,6 +20,8 @@ a.go:hover{ text-decoration:underline;}
 	font-family: arial, sans-serif;
 	font-weight: normal;
 	color: #444444;
+	margin-bottom: 60%;
+	margin-left: 15%;
 	}
 .price_table a{color: #444444;}
 .price_table .align_center{text-align: center;}
@@ -169,6 +171,7 @@ background: url("../images/icon-no.gif") no-repeat 0 0;
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
+	width: 50%;
 	 }
 .buy_now:hover
 	{
