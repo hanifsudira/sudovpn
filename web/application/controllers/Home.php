@@ -2,31 +2,99 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
-
-    public function index()
-	{
+//
+    public function index(){
 		$this->load->view('home');
 	}
+
+
+    // Set values in session
+    public function set_session_value() {
+
+        // Check input validation
+        $this->form_validation->set_rules('session_value', 'Session Value', 'trim|required');
+
+        if ($this->form_validation->run() == FALSE) {
+        $this->load->view('home');
+        } else {
+
+        // Create session array
+        $sess_array = array(
+        'set_value' => $this->input->post('session_value')
+        );
+
+        // Add user value in session
+        $this->session->set_userdata('session_data', $sess_array);
+        $data['message_display'] = 'Value Successfully Set in Session';
+        $this->load->view('home', $data);
+        }
+    }
+
+    // Read session values
+    public function read_session_value() {
+
+        // Read all session values
+        $set_data = $this->session->all_userdata();
+
+        if (isset($set_data['session_data']) && $set_data['session_data']['set_value'] != NULL) {
+        $data['read_set_value'] = 'Set Value : ' . $set_data['session_data']['set_value'];
+        } else {
+        $data['read_set_value'] = 'Please Set Session Value First !';
+        }
+        $this->load->view('home', $data);
+    }
+
+    // Unset set values from session
+    public function unset_session_value() {
+        $sess_array = array(
+        'set_value' => ''
+        );
+
+        // Removing values from session
+        $this->session->unset_userdata('session_data', $sess_array);
+        $data['message_display'] = 'Successfully Unset Session Set Value';
+        $this->load->view('home', $data);
+    }    	
+    
 	public function login()
 	{
 		$this->load->view('login');
 	}
 
+    public function logout()
+    {
+        $newdata = array(
+            'id_user' => '',
+            'email' => '',
+            'logged_in'  => FALSE);
+
+        $this->session->unset_userdata($newdata);
+        $this->load->view('login');
+    }
+
 	public function dashboard_client()
 	{
-		$this->load->view('dashboard_client');
+		$this->load->view('client/dashboard_client');
 	}
-/*	public function logins()
+	public function logins()
 	{
-        $id = array(
-            'email' => $this->input->post('user[email]'),
-            'password' => $this->input->post('user[password]') 
-        );
-		$this->load->model('sudovpn');
-		$data= $this->sudovpn->login($id);
-		if($data)return redirect(base_url()."/home/dashboard_client");       
-        else return redirect(base_url()."/home/login");       
-	}*/
+        $json = file_get_contents('http://sudovpn.id:5002/check'); // this WILL do an http request for you
+        $data = json_decode($json);
+        var_dump($data);
+//        foreach($data as $item){
+//            $id_user=$item['id_user'];
+//            $email=$item['email'];
+//        }
+//
+//        $newdata = array(
+//				'id_user' => $id_user,
+//				'email' => $email,
+//				'logged_in'  => TRUE);
+//        //var_dump($newdata);
+//        $this->session->set_userdata($newdata);
+        //return redirect('http://sudovpn.id/home');
+	}
+
     public function register()
 	{
 		$this->load->view('registrasi');

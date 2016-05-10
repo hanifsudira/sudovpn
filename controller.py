@@ -1,7 +1,7 @@
 from flask import Flask, render_template, json, request, session, redirect, url_for, escape
 from flask.ext.mysql import MySQL
 from werkzeug import generate_password_hash, check_password_hash
-
+import requests
 mysql = MySQL()
 app = Flask(__name__)
 
@@ -27,32 +27,36 @@ def showSignUp():
 def sucess():
 	return render_template('sucess.html')
 
+
 @app.route('/tampil')
 def tampil():
 	try:
 
 		con = mysql.connect()
 		cursor = con.cursor()
-		cursor.callproc('SP_ListUserById',())
+		cursor.callproc('SP_ListAllUser',())
 		wishes = cursor.fetchall()
 
 		wishes_dict = []
 		for wish in wishes:
 			wish_dict = {
-						'id_user': wish[0],
-						'full_name': wish[1],
-						'email': wish[2],
-						'password': wish[3],
+						'id_user': str(wish[0]),
+						'email': wish[1],
+						'password': wish[2],
+						'fullname': wish[3],
 						'phone': wish[4],
 						'address': wish[5],
-						'facebook': wish[6],
+						'status': str(wish[6]),
 						'time': wish[7],
 			}
 			wishes_dict.append(wish_dict)
 
-			return json.dumps(wishes_dict)
-		else:
-			return render_template('error.html', error = 'Unauthorized Access')
+		url = 'http://sudovpn.id/admin/tampil'
+		headers = {'Content-Type': 'application/json', 'Accept':'application/json'}
+		r = requests.post(url,data=json.dumps(wishes_dict), headers=headers)
+
+		return r.content
+
 	except Exception as e:
 		return render_template('error.html', error = str(e))
 
@@ -105,17 +109,12 @@ def userHome():
 		return render_template('error.html',error = 'Unauthorized Access')
 
 
-@app.route('/logout')
-def logout():
-	session.pop('user',None)
-	return redirect('/')
-
 @app.route('/validateLogin',methods=['POST'])
 def validateLogin():
 	try:
 		_username = request.form['user[email]']
 		_password = request.form['user[password]']
-		
+
 
 		# connect to mysql
 
@@ -125,16 +124,56 @@ def validateLogin():
 		data = cursor.fetchall()
 
 		if len(data) > 0:
-			return redirect('http://sudovpn.id/home/dashboard_client')
+			return redirect('http://sudovpn.id/home')
 		else:
 			return redirect('http://sudovpn.id/home/login')
-			
+
 
 	except Exception as e:
 		return redirect('http://sudovpn.id/home/login')
 	finally:
 		cursor.close()
 		con.close()
+
+# @app.route('/validateLogin',methods=['POST'])
+# def validateLogin():
+# 	try:
+# 		_username = request.form['user[email]']
+# 		_password = request.form['user[password]']
+#
+#
+# 		# connect to mysql
+#
+# 		con = mysql.connect()
+# 		cursor = con.cursor()
+# 		cursor.callproc('SP_Login',(_username,_password))
+# 		data = cursor.fetchall()
+#
+# 		print data;
+#
+# 		if len(data) > 0:
+# 			wishes_dict = []
+# 			for data in wishes:
+# 				wish_dict = {
+# 							'id_user': str(data[0]),
+# 							'email': data[1],
+# 				}
+# 				wishes_dict.append(wish_dict)
+#
+# 			url = 'http://sudovpn.id/home/logins'
+# 			headers = {'Content-Type': 'application/json', 'Accept':'application/json'}
+# 			r = requests.post(url,data=json.dumps(wishes_dict), headers=headers)
+#
+# 			return r.content
+# 		else:
+# 			return redirect('http://sudovpn.id/home/login')
+#
+#
+# 	except Exception as e:
+# 		return redirect('http://sudovpn.id/home/login')
+# 	finally:
+# 		cursor.close()
+# 		con.close()
 
 
 @app.route('/validateRegister',methods=['POST'])
