@@ -24,20 +24,20 @@
     <div class='container'>
       <div class='row-fluid'>
         <div class='span4 offset4'>
-          <form accept-charset="UTF-8" action="http://sudovpn.id:5002/validateRegister" class="new_user" id="new_user" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="83XB3tOTNc32k3lTEDQcXvHfs1TRPTYQupERDaRSlx8=" /></div>
+          <form accept-charset="UTF-8" action="http://sudovpn.id:5002/updateUser" class="new_user" id="new_user" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="83XB3tOTNc32k3lTEDQcXvHfs1TRPTYQupERDaRSlx8=" /></div>
 
 			<br><br>
             <label class="control-label" for="inputEmail">Full Name</label>
-            <input name="name" type="text" id="inputName" placeholder="<?php echo $list['fullname'];?>" required>
+            <input name="name" type="text" id="inputName" value="<?php echo $list['fullname'];?>" required>
 
             <label class="control-label" for="inputEmail">Phone</label>
-            <input name="phone" type="text" id="inputEmail" placeholder="<?php echo $list['phone'];?>" required>
+            <input name="phone" type="text" id="inputEmail" value="<?php echo $list['phone'];?>" required>
 
             <label class="control-label" for="inputEmail">Address</label>
-            <input name="address" type="text" id="inputEmail" placeholder="<?php echo $list['address'];?>" required>
+            <input name="address" type="text" id="inputEmail" value="<?php echo $list['address'];?>" required>
 
             <label class="control-label" for="inputPassword">Password</label>
-            <input name="passwd" type="password" id="inputPassword" placeholder="Input Your Password!" required>
+            <input name="passwd" type="password" id="inputPassword" value="Input Your Password!" required>
 
             <br>
             <input class="bttn bttn-green button button-small" name="commit" type="submit" value="Update"/>
