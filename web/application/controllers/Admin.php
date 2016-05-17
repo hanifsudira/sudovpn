@@ -9,12 +9,17 @@ class Admin extends CI_Controller {
 		if(!($this->session->userdata('logged_in') == TRUE && $this->session->userdata('email') == 'admin@gmail.com')){
 			return redirect(site_url('admin/login'));
 		}
-
+		$url="http://sudovpn.id:5002/listallpackethome";
+		$json = file_get_contents($url);
+		$data['list_user']= json_decode($json, TRUE);
+		//var_dump($data);
+		
 		$this->load->view('admin/head');
 		$this->load->view('admin/nav');
 		$this->load->view('admin/sidebar');
-		$this->load->view('admin/home');
+		$this->load->view('admin/home',$data);
 		$this->load->view('admin/footer');
+		
 	}
 	public function member()
 	{
@@ -52,15 +57,17 @@ class Admin extends CI_Controller {
 		if(!($this->session->userdata('logged_in') == TRUE && $this->session->userdata('email') == 'admin@gmail.com')) {
 			return redirect(site_url('admin/login'));
 		}
-			$id_=(int)$id;
-			$url="http://sudovpn.id:5002/listperid/$id_";
+			$url="http://sudovpn.id:5002/listperid/$id";
 			$json = file_get_contents($url);
 			$temp= json_decode($json, TRUE);
 		foreach($temp as $item){
 			$data['list']=$item;
 		}
-		var_dump($temp);
-		
+
+		$url="http://sudovpn.id:5002/listAllPacket_User/$id";
+		$json = file_get_contents($url);
+		$data['list_user']= json_decode($json, TRUE);
+
 		$this->load->view('admin/head');
 		$this->load->view('admin/nav');
 		$this->load->view('admin/sidebar');
@@ -76,8 +83,20 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/mail');
 		$this->load->view('admin/footer');
 	}
+	public function sent()
+	{
+		$this->load->view('admin/head');
+		$this->load->view('admin/nav');
+		$this->load->view('admin/sidebar');
+		$this->load->view('admin/sentBox');
+		$this->load->view('admin/footer');
+	}
 	public function compose()
 	{
+		if(!($this->session->userdata('logged_in') == TRUE && $this->session->userdata('email') == 'admin@gmail.com')) {
+			return redirect(site_url('admin/login'));
+		}
+		
 		$this->load->view('admin/head');
 		$this->load->view('admin/nav');
 		$this->load->view('admin/sidebar');
@@ -86,6 +105,10 @@ class Admin extends CI_Controller {
 	}
 	public function create_paket()
 	{
+		if(!($this->session->userdata('logged_in') == TRUE && $this->session->userdata('email') == 'admin@gmail.com')) {
+			return redirect(site_url('admin/login'));
+		}
+
 		$this->load->view('admin/head');
 		$this->load->view('admin/nav');
 		$this->load->view('admin/sidebar');
@@ -94,10 +117,49 @@ class Admin extends CI_Controller {
 	}
 	public function paket()
 	{
+		if(!($this->session->userdata('logged_in') == TRUE && $this->session->userdata('email') == 'admin@gmail.com')) {
+			return redirect(site_url('admin/login'));
+		}
+
+		$url="http://sudovpn.id:5002/listAllPacket";
+		$json = file_get_contents($url);
+		$data['list']= json_decode($json, TRUE);
+		
 		$this->load->view('admin/head');
 		$this->load->view('admin/nav');
 		$this->load->view('admin/sidebar');
-		$this->load->view('admin/paket');
+		$this->load->view('admin/paket',$data);
+		$this->load->view('admin/footer');
+	}
+	public function edit_packet($id)
+	{
+		if(!($this->session->userdata('logged_in') == TRUE && $this->session->userdata('email') == 'admin@gmail.com')) {
+			return redirect(site_url('admin/login'));
+		}
+
+		$url="http://sudovpn.id:5002/listperPacket/$id";
+		$json = file_get_contents($url);
+		$temp= json_decode($json, TRUE);
+		foreach($temp as $item){
+			$data['list']=$item;
+		}
+
+		$this->load->view('admin/head');
+		$this->load->view('admin/nav');
+		$this->load->view('admin/sidebar');
+		$this->load->view('admin/edit_packet',$data);
+		$this->load->view('admin/footer');
+	}
+	public function edit_plan_user()
+	{
+		if(!($this->session->userdata('logged_in') == TRUE && $this->session->userdata('email') == 'admin@gmail.com')) {
+			return redirect(site_url('admin/login'));
+		}
+
+		$this->load->view('admin/head');
+		$this->load->view('admin/nav');
+		$this->load->view('admin/sidebar');
+		$this->load->view('admin/edit_plan');
 		$this->load->view('admin/footer');
 	}
 	public function login()
@@ -134,5 +196,6 @@ class Admin extends CI_Controller {
 			return redirect(site_url('admin/login'));
 		}
 	}
+	
 
 }

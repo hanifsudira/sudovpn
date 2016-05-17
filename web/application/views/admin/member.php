@@ -47,15 +47,26 @@
                       foreach($listmember as $item){?>
                         <tr>
                           <td>
-                            <a href="pages/examples/invoice.html"><?php echo $item['email']; ?></a></td>
+                            <a href="pages/examples/invoice.html"><?php echo $item['email']; ?></a>
+							</td>
                           <td><?php echo $item['fullname']; ?></td>
-                          <td><?php if($item['status']=='1'){ echo "<span class='label label-success'>Active</span>"; }else{ echo "<span class='label label-danger'>Suspend</span>";} ?></td>
+							<td>
+						  <?php 
+							if($item['status']=='1'){ echo "<span class='label label-success'>Active</span>"; 
+							}else{ 
+							echo "<span class='label label-danger'>Suspend</span>";} 
+							?>
+							</td>
                           <td>
-                            <div class="timeline-footer">
+							 <div class="timeline-footer">
                               <a class="btn btn-primary btn-xs" href="<?php echo base_url() ?>admin/view/<?php echo $item['id_user'];?>">View</a>
-                              <a class="btn btn-danger btn-xs">Delete</a>
+                              <a class="btn btn-danger btn-xs" href="http://sudovpn.id:5002/delperid/<?php echo $item['id_user'];?>">Delete</a>
                             </div>
-                          </td>
+						  
+						  </td>
+						  
+                           
+                          
                         </tr>
 
                       <?php } ?>

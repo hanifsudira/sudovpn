@@ -41,22 +41,26 @@
                       <th>User Maks</th>
                       <th>Bandwidth</th>
                       <th>Parenting</th>
+					  <th>Life Time</th>
+					  <th>Harga</th>
+                      <th>Action</th>
                     </tr>
+                    <?php foreach($list as $item){?>
                     <tr>
-                      <td>1</td>
-                      <td>John Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-success">1TB</span></td>
-                      <td>Yes</td>
-                    </tr>
+                      <td><?php echo $item['id_packet']; ?></td>
+                      <td><?php echo $item['packet_name']; ?></td>
+                      <td><?php echo $item['max']; ?></td>
+                      <td><?php echo $item['bandwidth']; ?> MB</td>
+                      <td><?php echo $item['parenting']; ?></td>
+					  <td><?php echo $item['life_time']; ?> Days</td>
+					   <td><?php echo $item['harga']; ?> K</td>
+                      <td>
+                        <a class="btn btn-primary btn-xs" href="<?php echo base_url() ?>admin/edit_packet/<?php echo $item['id_packet'];?>">Edit</a>
+                        <a class="btn btn-danger btn-xs" href="http://sudovpn.id:5002/deletePacket/<?php echo $item['id_packet'];?>">Delete</a>
+                      </td>
+
                     <tr>
-                      <td>2</td>
-                      <td>Alexander Pierce</td>
-                      <td>11-7-2014</td>
-                      <td><span class="label label-warning">500GB</span></td>
-                      <td>No</td>
-                    </tr>
-                   
+                    <?php } ?>
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->

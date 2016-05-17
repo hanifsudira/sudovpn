@@ -82,27 +82,32 @@
                     <table class="table no-margin">
                       <thead>
                         <tr>
-                          <th>Member ID</th>
-                          <th>Name</th>
-                          <th>Status</th>
-                          <th>Action</th>
+                      <th>No.</th>
+					  <th>ID_User</th>
+                      <th>Paket</th>
+                      <th>Max</th>
+                      <th>Start</th>
+                      <th>End</th>
+					  <th>Status</th>
                         </tr>
                       </thead>
                       <tbody>
+					   <?php
+                    $count=0;
+                    foreach($list_user as $item){$count++;?>
                         <tr>
                           <td>
-							<a href="pages/examples/invoice.html">SV05201600001</a></td>
-							<td>MIrza Ghulam</td>
-							<td><span class="label label-success">Active</span></td>
-							<td>
-								<div class="timeline-footer">
-									<a class="btn btn-primary btn-xs">View</a>
-									<a class="btn btn-danger btn-xs">Delete</a>
-								</div>
-							</td>
+							<?php echo $count; ?></td>
+							<td><a href="<?php echo base_url(); ?>admin/view/<?php echo $item['id_user']; ?>"><?php echo $item['id_user']; ?></a></td>
+							<td><?php echo $item['packet_name']; ?></td>
+							<td><?php echo $item['max']; ?></td>
+							<td><?php echo $item['start_time']; ?></td>
+							<td><?php echo $item['stop_time']; ?></td>
+							<td><?php echo $item['status']; ?></td>
+							
                         </tr>
                        
-                       
+					<?php } ?>
                        
                       </tbody>
                     </table>

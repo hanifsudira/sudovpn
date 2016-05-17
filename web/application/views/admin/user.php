@@ -24,17 +24,17 @@
                 <div class="box-body box-profile">
                   <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url() ?>assets/images/user4-128x128.jpg" alt="User profile picture">
                   <h3 class="profile-username text-center"><?php echo $list['fullname'];?></h3>
-                  <p class="text-muted text-center">Software Engineer</p>
+                  <p class="text-muted text-center"><?php echo $list['email'];?></p>
 
                   <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
-                      <b>Followers</b> <a class="pull-right">1,322</a>
+                      <b>Phone</b> <a class="pull-right"><?php echo $list['phone'];?></a>
                     </li>
                     <li class="list-group-item">
-                      <b>Following</b> <a class="pull-right">543</a>
+                      <b>Address</b> <a class="pull-right"><?php echo $list['address'];?></a>
                     </li>
                     <li class="list-group-item">
-                      <b>Friends</b> <a class="pull-right">13,287</a>
+                      <b>count VPN</b> <a class="pull-right">13,287</a>
                     </li>
                   </ul>
 
@@ -46,55 +46,13 @@
             <div class="col-md-9">
               <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                  <li class="active"><a href="#activity" data-toggle="tab">History User</a></li>
-                  <li><a href="#timeline" data-toggle="tab">Paket Plan User</a></li>
-                  <li><a href="#settings" data-toggle="tab">Settings</a></li>
+                  <li class="active"><a href="#timeline" data-toggle="tab">Paket Plan User</a></li>
+                  <!--li><a href="#timeline" data-toggle="tab">Paket Plan User</a></li>
+                  <li><a href="#settings" data-toggle="tab">Settings</a></li-->
                 </ul>
                 <div class="tab-content">
-                  <div class="active tab-pane" id="activity">
-                    <!-- Post -->
-                       <div class="row">
-            <div class="col-xs-12">
-              <div class="box box-solid collapsed-box">
-                <div class="box-header">
-                  <i class="fa fa-bar-chart-o"></i>
-                  <h3 class="box-title">Sources usage</h3>
-                   <div class="box-tools pull-right">
-                    <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                    
-                  </div>
-                </div><!-- /.box-header -->
-                <div class="box-body" style="display:none;">
-                  <div class="row">
-                    <div class="col-md-3 col-sm-6 col-xs-6 text-center">
-                      <input type="text" class="knob" value="30" data-width="90" data-height="90" data-fgColor="#3c8dbc" data-readonly="true">
-                      <div class="knob-label">data-width="90"</div>
-                    </div><!-- ./col -->
-                    <div class="col-md-3 col-sm-6 col-xs-6 text-center">
-                      <input type="text" class="knob" value="30" data-width="120" data-height="120" data-fgColor="#f56954">
-                      <div class="knob-label">data-width="120"</div>
-                    </div><!-- ./col -->
-                    <div class="col-md-3 col-sm-6 col-xs-6 text-center">
-                      <input type="text" class="knob" value="30" data-thickness="0.1" data-width="90" data-height="90" data-fgColor="#00a65a">
-                      <div class="knob-label">data-thickness="0.1"</div>
-                    </div><!-- ./col -->
-                    <div class="col-md-3 col-sm-6 col-xs-6 text-center">
-                      <input type="text" class="knob" data-thickness="0.2" data-angleArc="250" data-angleOffset="-125" value="30" data-width="120" data-height="120" data-fgColor="#00c0ef">
-                      <div class="knob-label">data-angleArc="250"</div>
-                    </div><!-- ./col -->
-                  </div><!-- /.row -->
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-
-
-                    <!-- Post -->
-               
-
-                   
-                  </div><!-- /.tab-pane -->
-                  <div class="tab-pane" id="timeline">
+             
+                  <div class="active" id="timeline">
                     <!-- The timeline -->
 						<div class="row">
             <div class="col-xs-12">
@@ -115,55 +73,32 @@
                     <tr>
                       <th>No.</th>
                       <th>Paket</th>
+                      <th>Max</th>
                       <th>Start</th>
                       <th>End</th>
+					  <th>Data Usage</th>
 					  <th>Status</th>
-                      <th>Action</th>
                     </tr>
-					
+                    <?php
+                    $count=0;
+                    foreach($list_user as $item){$count++;?>
                     <tr>
-                      <td>1</td>
-                      <td>Gold</td>
-                      <td>11-7-2015</td>
-                      <td>11-7-2016</td>
-					  <td><span class="label label-warning">Active</span></td>
-                      <td>
-						<div class="timeline-footer">
-									<a class="btn btn-primary btn-xs">View</a>
-									<a class="btn btn-danger btn-xs">Edit</a>
-						</div>
-						
-						</td>
-						 
-            
-					  <div class="box box-solid collapsed-box">
-						<div class="box-header">
-						  <i class="fa fa-bar-chart-o"></i>
-						  <h3 class="box-title">Sources usage</h3>
-						   <div class="box-tools pull-right">
-							<button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-							
-						  </div>
-						</div><!-- /.box-header -->
-						<div class="box-body" style="display:none;">
-						  <div class="row">
-							
-							<div class="col-md-3 col-sm-6 col-xs-6 text-center">
-							  <input type="text" class="knob" value="30" data-width="120" data-height="120" data-fgColor="#00c0ef">
-							  <div class="knob-label">Data Usage</div>
-							</div><!-- ./col -->
-						   
-						   
-						  </div><!-- /.row -->
-						</div><!-- /.box-body -->
-					  </div><!-- /.box -->
-  
-
+                      <td><?php echo $count; ?></td>
+                      <td><?php echo $item['packet_name']; ?></td>
+                      <td><?php echo $item['max']; ?></td>
+                      <td><?php echo $item['start_time']; ?></td>
+                      <td><?php echo $item['stop_time']; ?></td>
+					  <td>1GB/500Gb</td>
+                      <?php if ($item['status']=='Not Active') {?>
+					  <td><a href="http://sudovpn.id:5002/change_status_active/<?php echo $item['id_list']; ?>" class="label label-warning"><?php echo $item['status'];?></a></td>
+                      <?php }if ($item['status']=='Active'){ ?>
+                      <td><a href="http://sudovpn.id:5002/change_status_suspend/<?php echo $item['id_list']; ?>" class="label label-success"><?php echo $item['status'];?></a></td>
+                      <?php }if ($item['status']=='Suspend'){ ?>
+                      <td><a href="http://sudovpn.id:5002/change_status_active/<?php echo $item['id_list']; ?>" class="label label-danger"><?php echo $item['status'];?></a></td>
+                      <?php } ?>
                     </tr>
-                   <tr>
-					sss
-				   </tr>
-                   
+                    <?php } ?>
+
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
