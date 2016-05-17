@@ -29,17 +29,22 @@ class Client extends CI_Controller {
 
 	public function plans(){
 		
-		$id = $this->session->userdata('id_user');	
-		$url="http://sudovpn.id:5002/listperid/$id";
+		$id = $this->session->userdata('id_user');
+		$url="http://sudovpn.id:5002/listAllPacket";
 		$json = file_get_contents($url);
+		$data['list']= json_decode($json, TRUE);
+		$data['id_user']=$id;
+			
+		$url2="http://sudovpn.id:5002/listperid/$id";
+		$json = file_get_contents($url2);
 		$temp= json_decode($json, TRUE);
 		foreach($temp as $item){
-			$data['list']=$item;
-		}
+			$data2['list']=$item;
+		}	
 		
 		$this->load->view('client/head');
-		$this->load->view('client/nav',$data);
-		$this->load->view('client/sidebar',$data);
+		$this->load->view('client/nav',$data2);
+		$this->load->view('client/sidebar',$data2);
 		$this->load->view('client/plans',$data);
 		$this->load->view('client/footer');
 	}
@@ -73,7 +78,7 @@ class Client extends CI_Controller {
 		$this->load->view('client/head');
 		$this->load->view('client/nav',$data);
 		$this->load->view('client/sidebar',$data);
-		$this->load->view('client/edit_profile');
+		$this->load->view('client/edit_profile',$data);
 		$this->load->view('client/footer');
 	}
 	
@@ -142,7 +147,6 @@ class Client extends CI_Controller {
 		$json = file_get_contents($url);
 		$temp= json_decode($json, TRUE);
 		$username=$temp['username'];
-
 		$namefile="$username.ovpn";
 		$url=  "http://sudovpn.id/assets/file/$namefile";
 		$data = file_get_contents($url);
@@ -156,10 +160,18 @@ class Client extends CI_Controller {
 		var_dump($temp);
 	}
 	public function mail(){
+			
+		$id = $this->session->userdata('id_user');
+		$url="http://sudovpn.id:5002/listperid/$id";
+		$json = file_get_contents($url);
+		$temp= json_decode($json, TRUE);
+		foreach($temp as $item){
+			$data['list']=$item;
+		}
 
 		$this->load->view('client/head');
-		$this->load->view('client/nav');
-		$this->load->view('client/sidebar');
+		$this->load->view('client/nav',$data);
+		$this->load->view('client/sidebar',$data);
 		$this->load->view('client/mailUser');
 		$this->load->view('client/footer');
 	

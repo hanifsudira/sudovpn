@@ -31,7 +31,7 @@
                   <h3 class="box-title">Create User</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal" method="post" action="http://sudovpn.id:5002/">
+                <form class="form-horizontal" method="post" action="http://sudovpn.id:5002/validateNewPacket">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-3 control-label">Nama Paket</label>

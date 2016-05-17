@@ -42,7 +42,7 @@
                   <h3 class="box-title">Compose New Message</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-				<form method="post" action="#">
+				<form method="post" action="http://sudovpn.id:5002/validateNewMessage">
                   <div class="form-group">
                     <input name="id_to" class="form-control" placeholder="To:">
                   </div>

@@ -28,19 +28,16 @@
 
 			<br><br>
             <label class="control-label" for="inputEmail">Full Name</label>
-            <input name="name" type="text" id="inputName" placeholder="Tampilkan nama si pengguna" required>
-
-            <label class="control-label" for="inputEmail">Email</label>
-            <input name="email" type="email" id="inputEmail" placeholder="Tampilkan email si pengguna" required>
+            <input name="name" type="text" id="inputName" placeholder="<?php echo $list['fullname'];?>" required>
 
             <label class="control-label" for="inputEmail">Phone</label>
-            <input name="phone" type="text" id="inputEmail" placeholder="Tampilkan telepon si pengguna" required>
+            <input name="phone" type="text" id="inputEmail" placeholder="<?php echo $list['phone'];?>" required>
 
             <label class="control-label" for="inputEmail">Address</label>
-            <input name="address" type="text" id="inputEmail" placeholder="Tampilkan alamat si pengguna" required>
+            <input name="address" type="text" id="inputEmail" placeholder="<?php echo $list['address'];?>" required>
 
             <label class="control-label" for="inputPassword">Password</label>
-            <input name="passwd" type="password" id="inputPassword" placeholder="Password" required>
+            <input name="passwd" type="password" id="inputPassword" placeholder="Input Your Password!" required>
 
             <br>
             <input class="bttn bttn-green button button-small" name="commit" type="submit" value="Update"/>

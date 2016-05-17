@@ -410,6 +410,35 @@ def updateNewPacket():
 		cursor.close()
 		con.close()
 
+@app.route('/updateUser',methods=['POST'])
+def updateUser():
+	try:
+		_id_user = request.form['id_user']
+		_fullname = request.form['fullname']
+		_phone = request.form['phone']
+		_address = request.form['address']
+
+		# connect to mysql
+
+		if _id_user and _fullname and _phone and _address:
+			con = mysql.connect()
+			cursor = con.cursor()
+			cursor.callproc('SP_EditProfil',(_id_user,_fullname,_phone,_address,))
+			data = cursor.fetchall()
+
+			if len(data) is 0:
+				con.commit()
+				return redirect('http://sudovpn.id/client/profile')
+			else:
+				return redirect('http://sudovpn.id/client/edit')
+
+	except Exception as e:
+		return json.dumps({'error':str(e)})
+	finally:
+		cursor.close()
+		con.close()
+
+
 @app.route('/listAllPacket_User/<string:page_id>',methods=['GET'])
 def listAllPacket_User(page_id):
 	try:
