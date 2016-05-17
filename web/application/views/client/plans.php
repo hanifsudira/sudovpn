@@ -13,6 +13,32 @@
 </section>
 <section class="content">
 
+<div id='fb-root'></div>
+    <script src='http://connect.facebook.net/en_US/all.js'></script>
+    
+    <script> 
+      FB.init({appId: "275365986132209", status: true, cookie: true});//change your application ID
+
+      function postToFeed() {
+        // calling the API ...
+        var obj = {
+          method: 'feed',
+          link: 'https://developers.facebook.com/docs/reference/dialogs/',
+          picture: 'http://sudovpn.id/assets/images/devices%402x-1ee5a67a11e5bf5fd15aa68dfc6e3123.png',
+          name: 'SudoVPN - A Fast and Secure VPN',
+          caption: 'SUDOVPN.ID',
+          description: 'SudoVPN provides fast and secure world-wide VPN services with easy-to-use apps for PC, Mac, iOS, Android, and Linux. Unblock and secure your internet today!'
+        };
+
+        function callback(response) {
+          location.href='http://sudovpn.id'; //go to your page after LIKE
+        }
+
+        FB.ui(obj, callback);
+      }
+    
+    </script>
+
 		<div class="price_table">
 			<?php foreach($list as $item){?>
 
@@ -37,7 +63,16 @@
 						<form method="post" action="http://sudovpn.id:5002/beliPaket">
 							<input name="id_user" type="hidden" class="form-control" id="inputEmail3" value="<?php echo $id_user; ?>">
 							<input name="id_packet" type="hidden" class="form-control" id="inputEmail3" value="<?php echo $item['id_packet']; ?>">
-							<button class="btn btn-info pull-center" type="submit" >Choose</button>
+							<?php 	if($item['id_packet']==2):?>
+										<a href="https://www.facebook.com/sharer/sharer.php?u=sudovpn.id" class="btn btn-info pull-center" target="_blank" style="color:white" > Share on Facebook </a>
+										<p><a onclick='postToFeed(); return false;'class="btn btn-info pull-center" style="color:white">Share on Facebook</a></p>
+										<p id='msg'></p>
+	
+							<?php 	else:?>
+									<button class="btn btn-info pull-center" type="submit" >Choose</button>
+				
+							<?php endif;?>
+						
 						</form>
 					</li>
 				</ul>

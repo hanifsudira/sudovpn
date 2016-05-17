@@ -16,7 +16,7 @@
 <meta content='width=device-width,initial-scale=1,maximum-scale=1' name='viewport'>
 <meta content='SudoVPN provides fast and secure world-wide VPN services with easy-to-use apps for PC, Mac, iOS, Android, and Linux. Unblock and secure your Internet today!' name='description'>
 <meta content='SudoVPN - A Fast and Secure VPN' property='og:title'>
-<meta content='//d39kb1fcbt5kgr.cloudfront.net/assets/fb-badge-245a25825083b90bcfe128cd091deaf3.png' property='og:image'>
+<meta content='http://sudovpn.id/assets/images/devices%402x-1ee5a67a11e5bf5fd15aa68dfc6e3123.png' property='og:image'>
 <meta content='SudoVPN provides fast and secure world-wide VPN services with easy-to-use apps for PC, Mac, iOS, Android, and Linux. Unblock and secure your Internet today!' property='og:description'>
 
 <title>SUDO VPN - A Fast and Secure VPN</title>
@@ -549,7 +549,7 @@ window._fbq.push(['track', 'Lead']);
         <!-- * Facebook Proxy Like Button Rendering inline css, adding it here in partial, so don't care about having it included (if required) on different pages */ -->
           <style scoped>
             div.fb-like-count {
-              background: url('../d39kb1fcbt5kgr.cloudfront.net/assets/fb_like_count_right-3847f11c9484428c1d6c5e7f5841375d.png') no-repeat scroll top right transparent;
+              background: url('http://sudovpn.id/assets/images/devices%402x-1ee5a67a11e5bf5fd15aa68dfc6e3123.png') no-repeat scroll top right transparent;
               color: #444;
               display: block;
               float: left;
@@ -568,7 +568,7 @@ window._fbq.push(['track', 'Lead']);
             .fb-like-bt img { vertical-align: top; }
 
             div.fb-like-count span {
-              background: url('../d39kb1fcbt5kgr.cloudfront.net/assets/fb_like_count_left-1096d07502f42d63a14f43c55698a75e.png') no-repeat;
+              background: url('http://sudovpn.id/assets/images/devices%402x-1ee5a67a11e5bf5fd15aa68dfc6e3123.png') no-repeat;
               display: block;
               line-height: 14px;
               padding: 1px 2px 3px 6px;

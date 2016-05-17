@@ -37,22 +37,21 @@
             </div><!-- /.col -->
             <div class="col-md-9">
               <div class="box box-primary">
-				<form method="post" action="#">
+				<form method="post" action="http://sudovpn.id:5002/validateNewMessage">
                 <div class="box-header with-border">
                   <h3 class="box-title">Compose New Message</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-				<form method="post" action="http://sudovpn.id:5002/validateNewMessage">
+				
                   <div class="form-group">
-                    <input name="id_to" class="form-control" placeholder="To:">
+					 <input name="from" class="form-control" type="hidden" value=0>
+                    <input type="text" name="id_to" class="form-control" placeholder="To:" required>
                   </div>
                   <div class="form-group">
-                    <input name="subject" class="form-control" placeholder="Subject:">
+                    <input type="text" name="subject" class="form-control" placeholder="Subject:" required>
                   </div>
                   <div class="form-group">
-                    <textarea name="message" id="compose-textarea" class="form-control" style="height: 300px">
-                      
-                    </textarea>
+                    <textarea name="message" id="compose-textarea" class="form-control" style="height: 300px" required></textarea>
                   </div>
                   <div class="form-group">
                     <div class="btn btn-default btn-file">

@@ -12,6 +12,9 @@ class Client extends CI_Controller {
 	}
 
 	public function index(){
+		if(!($this->session->userdata('logged_in') == TRUE || $this->session->userdata('id_user') != '') ) {
+			return redirect(site_url('home/login'));
+		}
 		$id = $this->session->userdata('id_user');	
 		$url="http://sudovpn.id:5002/listperid/$id";
 		$json = file_get_contents($url);
@@ -28,7 +31,9 @@ class Client extends CI_Controller {
 	}
 
 	public function plans(){
-		
+		if(!($this->session->userdata('logged_in') == TRUE || $this->session->userdata('id_user') != '') ) {
+			return redirect(site_url('home/login'));
+		}
 		$id = $this->session->userdata('id_user');
 		$url="http://sudovpn.id:5002/listAllPacket";
 		$json = file_get_contents($url);
@@ -50,6 +55,9 @@ class Client extends CI_Controller {
 	}
 	
 	public function profile(){
+		if(!($this->session->userdata('logged_in') == TRUE || $this->session->userdata('id_user') != '') ) {
+			return redirect(site_url('home/login'));
+		}
 		
 		$id = $this->session->userdata('id_user');	
 		$url="http://sudovpn.id:5002/listperid/$id";
@@ -68,6 +76,10 @@ class Client extends CI_Controller {
 	}
 	
 	public function edit(){
+		if(!($this->session->userdata('logged_in') == TRUE || $this->session->userdata('id_user') != '') ) {
+			return redirect(site_url('home/login'));
+		}
+		
 		$id = $this->session->userdata('id_user');	
 		$url="http://sudovpn.id:5002/listperid/$id";
 		$json = file_get_contents($url);
@@ -83,7 +95,10 @@ class Client extends CI_Controller {
 	}
 	
 	public function detailpaket(){
-
+		if(!($this->session->userdata('logged_in') == TRUE || $this->session->userdata('id_user') != '') ) {
+			return redirect(site_url('home/login'));
+		}
+		
 		$id = $this->session->userdata('id_user');
 		$url="http://sudovpn.id:5002/listperid/$id";
 		$json = file_get_contents($url);
@@ -98,7 +113,10 @@ class Client extends CI_Controller {
 		$this->load->view('client/footer');
 	}
 	public function myplan(){
-
+		if(!($this->session->userdata('logged_in') == TRUE || $this->session->userdata('id_user') != '') ) {
+			return redirect(site_url('home/login'));
+		}
+		
 		$id_user = $this->session->userdata('id_user');
 
 		$url="http://sudovpn.id:5002/listAllPacket_User/$id_user";
@@ -120,7 +138,11 @@ class Client extends CI_Controller {
 		$this->load->view('client/footer');
 	}
 	public function createVpn($id){
-
+		if(!($this->session->userdata('logged_in') == TRUE || $this->session->userdata('id_user') != '') ) {
+			return redirect(site_url('home/login'));
+		}
+		
+		
 		$id_user = $this->session->userdata('id_user');
 
 		$url="http://sudovpn.id:5002/listPacket_perID/$id";
@@ -136,13 +158,24 @@ class Client extends CI_Controller {
 		$data['id_list']=$id;
 		$data['id_user']=$id_user;
 
+		$url2="http://sudovpn.id:5002/listperid/$id_user";
+		$json2 = file_get_contents($url2);
+		$temp= json_decode($json2, TRUE);
+		foreach($temp as $item){
+			$data2['list']=$item;
+		}
+
 		$this->load->view('client/head');
-		$this->load->view('client/nav');
-		$this->load->view('client/sidebar');
+		$this->load->view('client/nav',$data2);
+		$this->load->view('client/sidebar',$data2);
 		$this->load->view('client/createVPN',$data);
 		$this->load->view('client/footer');
 	}
 	public function download($vpn){
+		if(!($this->session->userdata('logged_in') == TRUE || $this->session->userdata('id_user') != '') ) {
+			return redirect(site_url('home/login'));
+		}
+		
 		$url="http://sudovpn.id:5002/download_vpn/$vpn";
 		$json = file_get_contents($url);
 		$temp= json_decode($json, TRUE);
@@ -160,7 +193,10 @@ class Client extends CI_Controller {
 		var_dump($temp);
 	}
 	public function mail(){
-			
+		if(!($this->session->userdata('logged_in') == TRUE || $this->session->userdata('id_user') != '') ) {
+			return redirect(site_url('home/login'));
+		}
+		
 		$id = $this->session->userdata('id_user');
 		$url="http://sudovpn.id:5002/listperid/$id";
 		$json = file_get_contents($url);
@@ -168,29 +204,55 @@ class Client extends CI_Controller {
 		foreach($temp as $item){
 			$data['list']=$item;
 		}
-
+		
+		$url="http://sudovpn.id:5002/listallInbox/$id";
+		$json = file_get_contents($url);
+		$inbox['list_inbox']= json_decode($json, TRUE);
+		
 		$this->load->view('client/head');
 		$this->load->view('client/nav',$data);
 		$this->load->view('client/sidebar',$data);
-		$this->load->view('client/mailUser');
+		$this->load->view('client/mailUser',$inbox);
 		$this->load->view('client/footer');
 	
 	}
 	public function sent(){
-
+		if(!($this->session->userdata('logged_in') == TRUE || $this->session->userdata('id_user') != '') ) {
+			return redirect(site_url('home/login'));
+		}
+		$id = $this->session->userdata('id_user');
+		$url="http://sudovpn.id:5002/listperid/$id";
+		$json = file_get_contents($url);
+		$temp= json_decode($json, TRUE);
+		foreach($temp as $item){
+			$data['list']=$item;
+		}
+		$url="http://sudovpn.id:5002/listallSent/$id";
+		$json = file_get_contents($url);
+		$outbox['list_inbox']= json_decode($json, TRUE);
+		
 		$this->load->view('client/head');
-		$this->load->view('client/nav');
-		$this->load->view('client/sidebar');
-		$this->load->view('client/sentBoxt');
+		$this->load->view('client/nav',$data);
+		$this->load->view('client/sidebar',$outbox);
+		$this->load->view('client/sentBox');
 		$this->load->view('client/footer');
 	
 	}
 	public function compose(){
-
+		if(!($this->session->userdata('logged_in') == TRUE || $this->session->userdata('id_user') != '') ) {
+			return redirect(site_url('home/login'));
+		}
+		$id = $this->session->userdata('id_user');
+		$url="http://sudovpn.id:5002/listperid/$id";
+		$json = file_get_contents($url);
+		$temp= json_decode($json, TRUE);
+		foreach($temp as $item){
+			$data['list']=$item;
+		}
 		$this->load->view('client/head');
-		$this->load->view('client/nav');
-		$this->load->view('client/sidebar');
-		$this->load->view('client/composeUser');
+		$this->load->view('client/nav',$data);
+		$this->load->view('client/sidebar',$data);
+		$this->load->view('client/composeUser',$id);
 		$this->load->view('client/footer');
 	
 	}

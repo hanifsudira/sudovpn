@@ -26,8 +26,8 @@
                 </div>
                 <div class="box-body no-padding">
                   <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="<?php echo base_url() ?>client/mail"><i class="fa fa-inbox"></i> Inbox <span class="label label-primary pull-right">12</span></a></li>
-                    <li><a href="<?php echo base_url() ?>client/sent"><i class="fa fa-envelope-o"></i> Sent</a></li>
+                    <li ><a href="<?php echo base_url() ?>client/mail"><i class="fa fa-inbox"></i> Inbox <span class="label label-primary pull-right">12</span></a></li>
+                    <li class="active"><a href="<?php echo base_url() ?>client/sent"><i class="fa fa-envelope-o"></i> Sent</a></li>
                     <!--li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a></li>
                     <li><a href="#"><i class="fa fa-filter"></i> Junk <span class="label label-warning pull-right">65</span></a></li>
                     <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li-->
@@ -39,7 +39,7 @@
             <div class="col-md-9">
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Inbox</h3>
+                  <h3 class="box-title">Sent</h3>
                   <div class="box-tools pull-right">
                     <div class="has-feedback">
                       <input type="text" class="form-control input-sm" placeholder="Search Mail">
@@ -68,18 +68,22 @@
                   <div class="table-responsive mailbox-messages">
                     <table class="table table-hover table-striped">
                       <tbody>
-                       <?php  foreach($list_inbox as $item){ ?>
                         <tr>
                           <td><input type="checkbox"></td>
                           <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                          <td class="mailbox-name"><a href="#">Admin</a></td>
-                          <td class="mailbox-subject"><b><?php echo $item['subject']; ?></b> - <?php echo $item['message']; ?></td>
+                          <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                          <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...</td>
                           <td class="mailbox-attachment"></td>
-                          <td class="mailbox-date"><?php echo $item['date']; ?></td>
+                          <td class="mailbox-date">5 mins ago</td>
                         </tr>
-                        
-                        
-					   <?php }?>
+                        <tr>
+                          <td><input type="checkbox"></td>
+                          <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
+                          <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                          <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...</td>
+                          <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                          <td class="mailbox-date">28 mins ago</td>
+                        </tr>
                         
                         
                       </tbody>

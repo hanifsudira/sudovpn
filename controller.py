@@ -6,6 +6,7 @@ import pexpect
 import paramiko
 import os
 from flask import send_from_directory
+import pexpect
 
 mysql = MySQL()
 app = Flask(__name__)
@@ -19,10 +20,29 @@ app.config['MYSQL_DATABASE_PASSWORD'] = 'awanpanasgila'
 app.config['MYSQL_DATABASE_DB'] = 'sudovpn'
 mysql.init_app(app)
 
-
-def mkdir(username):
+def sum_(ip):
 	ssh_newkey = 'Are you sure you want to continue connecting'
-	execute='ssh root@128.199.103.121 bash mkd.sh '+username
+	p = pexpect.spawn('ssh root@'+ip+' python checkfile.py')
+	i=p.expect([ssh_newkey,'password:',pexpect.EOF])
+
+	if i==0:
+		p.sendline('yes')
+		i=p.expect([ssh_newkey,'password:',pexpect.EOF])
+	if i==1:
+		p.sendline("openvpn01")
+		p.expect(pexpect.EOF)
+	elif i==2:
+		pass
+
+	result = p.before
+
+	p.close
+
+	return result
+
+def mkdir(username,ip):
+	ssh_newkey = 'Are you sure you want to continue connecting'
+	execute='ssh root@'+ip+' bash mkd.sh '+username
 	p = pexpect.spawn(execute)
 	i=p.expect([ssh_newkey,'password:',pexpect.EOF])
 
@@ -42,9 +62,9 @@ def mkdir(username):
 
 	p.close
 
-def create(folder,username):
+def create(folder,username,ip):
 	ssh_newkey = 'Are you sure you want to continue connecting'
-	execute='ssh root@128.199.103.121 bash create.sh '+folder+' '+username+' '
+	execute='ssh root@'+ip+' bash create.sh '+folder+' '+username+' '
 	p = pexpect.spawn(execute)
 	i=p.expect([ssh_newkey,'password:',pexpect.EOF])
 
@@ -65,9 +85,9 @@ def create(folder,username):
 
 	p.close
 
-def revoke(folder,username):
+def revoke(folder,username,ip):
 	ssh_newkey = 'Are you sure you want to continue connecting'
-	execute='ssh root@128.199.103.121 bash create.sh '+folder+' '+username+' '
+	execute='ssh root@'+ip+' bash create.sh '+folder+' '+username+' '
 	p = pexpect.spawn(execute)
 	i=p.expect([ssh_newkey,'password:',pexpect.EOF])
 
@@ -131,8 +151,6 @@ def tampil():
 @app.route('/listperid/<id>',methods=['GET'])
 def listperid(id):
 	try:
-		print id
-		print type(id)
 		con = mysql.connect()
 		cursor = con.cursor()
 		cursor.callproc('SP_List_PerID',(str(id),))
@@ -225,7 +243,6 @@ def validateLogin():
 		if len(data) > 0:
 			id_ = data[0][0]
 
-			print id_
 			return redirect("http://sudovpn.id/home/logins/"+str(id_))
 
 		else:
@@ -258,42 +275,12 @@ def validateRegister():
 
 		if len(data) is 0:
 			con.commit()
-			mkdir(_email)
+			mkdir(_email,'128.199.103.121')
+			mkdir(_email,'188.166.224.66')
 			return redirect('http://sudovpn.id/home/login')
 		else:
 			return redirect('http://sudovpn.id/home/register')
 
-
-	except Exception as e:
-		return json.dumps({'error':str(e)})
-	finally:
-		cursor.close()
-		con.close()
-
-@app.route('/validateNewPacket',methods=['POST'])
-def validateNewPacket():
-	try:
-		_nama= request.form['nama']
-		_max= request.form['max']
-		_bandwidth= request.form['bandwidth']
-		_parenting= request.form['parenting']
-		_life_time= request.form['life_time']
-		_harga= request.form['harga']
-
-
-		# connect to mysql
-
-		if _nama and _max and _bandwidth and _parenting and _life_time and _harga:
-			con = mysql.connect()
-			cursor = con.cursor()
-			cursor.callproc('SP_NewPacket',(_nama,_max,_bandwidth,_parenting,_life_time,_harga,))
-			data = cursor.fetchall()
-
-			if len(data) is 0:
-				con.commit()
-				return redirect('http://sudovpn.id/admin/paket')
-			else:
-				return redirect('http://sudovpn.id/admin/create_paket')
 
 	except Exception as e:
 		return json.dumps({'error':str(e)})
@@ -621,13 +608,27 @@ def validateNewVPN():
 		# connect to mysql
 
 		if _username and _id_list:
+			#disini di cek
+			ip=''
+			ip1='128.199.103.121'
+			ip2='188.166.224.66'
+			c_ip1=int(sum_(ip1).strip())
+			c_ip2=int(sum_(ip2).strip())
+			print c_ip1
+			print c_ip2
+
+			if(c_ip1<c_ip2):
+				ip=ip1
+			else:
+				ip=ip2
+
 			con = mysql.connect()
 			cursor = con.cursor()
-			cursor.callproc('SP_Create_VPN',(_username,_id_list,))
+			cursor.callproc('SP_Create_VPN',(_username,_id_list,ip,))
 			data = cursor.fetchall()
 
 			if len(data) is 0:
-				create(_email,_username)
+				create(_email,_username,ip)
 				con.commit()
 				return redirect('http://sudovpn.id/client/createVPN/'+_id_list)
 			else:
@@ -704,13 +705,14 @@ def download_vpn(page_id):
 		for wish in wishes:
 			username = wish[0]
 			folder= wish[1]
+			ip= wish[2]
 
 
 		if username and folder:
 			paramiko.util.log_to_file('/root/paramiko.log')
 
 			#open transport
-			host = "128.199.103.121"
+			host = ip
 			port = 22
 			transport = paramiko.Transport((host, port))
 
@@ -752,6 +754,97 @@ def delete_vpn(page_id):
 		return json.dumps({'error':str(e)})
 
 
+@app.route('/validateNewMessage',methods=['POST'])
+def validateNewMessage():
+	try:
+		_id_from= request.form['from']
+		_id_to= request.form['id_to']
+		_subject= request.form['subject']
+		_message= request.form['message']
+
+
+		print _id_from+_id_to+_subject+_message
+
+		# connect to mysql
+
+		if _id_from and _id_to and _subject and _message :
+			print 'masuk'
+			con = mysql.connect()
+			cursor = con.cursor()
+			cursor.callproc('SP_NewMessage',(_id_from,_id_to,_subject,_message,))
+			data = cursor.fetchall()
+
+			if len(data) is 0:
+				con.commit()
+				return redirect('http://sudovpn.id/admin/compose')
+			else:
+				return redirect('http://sudovpn.id/admin/compose')
+
+	except Exception as e:
+		return json.dumps({'error':str(e)})
+	finally:
+		cursor.close()
+		con.close()
+
+@app.route('/listallInbox/<string:page_id>')
+def listallInbox(page_id):
+	print "masuk"
+	try:
+		con = mysql.connect()
+		cursor = con.cursor()
+		cursor.callproc('SP_ListInbox',(page_id,))
+		wishes = cursor.fetchall()
+
+		wishes_dict = []
+		for wish in wishes:
+			wish_dict = {
+						'fullname': wish[0],
+						'subject': wish[1],
+						'message': wish[2],
+						'date': wish[3],
+						'status': wish[4],
+						'id_message': str(wish[5]),
+						
+						
+						
+			}
+			wishes_dict.append(wish_dict)
+
+		return json.dumps(wishes_dict)
+	except Exception as e:
+		return json.dumps({'error':str(e)})
+	finally:
+		cursor.close()
+		con.close()
+@app.route('/listallSent/<string:page_id>')
+def listallSent(page_id):
+	print "masuk"
+	try:
+		con = mysql.connect()
+		cursor = con.cursor()
+		cursor.callproc('SP_ListSent',(page_id,))
+		wishes = cursor.fetchall()
+
+		wishes_dict = []
+		for wish in wishes:
+			wish_dict = {
+						'fullname': wish[0],
+						'subject': wish[1],
+						'message': wish[2],
+						'date': wish[3],
+						'status': wish[4],
+						
+						
+						
+			}
+			wishes_dict.append(wish_dict)
+
+		return json.dumps(wishes_dict)
+	except Exception as e:
+		return json.dumps({'error':str(e)})
+	finally:
+		cursor.close()
+		con.close()
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0',port=5002)
