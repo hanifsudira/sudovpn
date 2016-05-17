@@ -877,6 +877,25 @@ def readMessage(page_id):
 	finally:
 		cursor.close()
 		con.close()
+
+@app.route('/deleteMessage/<string:page_id>',methods=['GET'])
+def deleteMessage(page_id):
+	try:
+		con = mysql.connect()
+		cursor = con.cursor()
+		cursor.callproc('SP_DeleteMessage',(page_id,))
+		wishes = cursor.fetchall()
+
+		if len(wishes) is 0:
+			con.commit()
+			return redirect('http://sudovpn.id/admin/mail')
+		else:
+			return redirect('http://sudovpn.id/admin/mail')
+	except Exception as e:
+		return json.dumps({'error':str(e)})
+	finally:
+		cursor.close()
+		con.close()
 		
 if __name__ == "__main__":
 	app.run(host='0.0.0.0',port=5002)

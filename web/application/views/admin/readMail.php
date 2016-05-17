@@ -50,7 +50,7 @@
                   <div class="mailbox-read-info">
 				  
                     <h3>Subject: <?php echo $item['subject']; ?></h3>
-                    <h5>From: Admin <span class="mailbox-read-time pull-right">15 Feb. 2015 11:03 PM</span></h5>
+                    <h5>From: <?php echo $item['fullname']; ?> <span class="mailbox-read-time pull-right">15 Feb. 2015 11:03 PM</span></h5>
                   </div><!-- /.mailbox-read-info -->
                   <div class="mailbox-controls with-border text-center">
                     <div class="btn-group">
@@ -73,7 +73,7 @@
                     <button class="btn btn-default"><i class="fa fa-reply"></i> Reply</button>
                     <button class="btn btn-default"><i class="fa fa-share"></i> Forward</button>
                   </div>
-                  <button class="btn btn-default"><i class="fa fa-trash-o"></i> Delete</button>
+                  <a href="http://sudovpn.id:5002/deleteMessage/<?php echo $item['id_message'];  ?>"><button class="btn btn-default"><i class="fa fa-trash-o"></i> Delete</button></a>
                   <button class="btn btn-default"><i class="fa fa-print"></i> Print</button>
                 </div><!-- /.box-footer -->
               </div><!-- /. box -->

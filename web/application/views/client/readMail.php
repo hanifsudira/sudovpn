@@ -73,7 +73,8 @@
                     <button class="btn btn-default"><i class="fa fa-reply"></i> Reply</button>
                     <button class="btn btn-default"><i class="fa fa-share"></i> Forward</button>
                   </div>
-                  <button class="btn btn-default"><i class="fa fa-trash-o"></i> Delete</button>
+                   <a href="http://sudovpn.id:5002/deleteMessage/<?php echo $item['id_message'];  ?>"><button class="btn btn-default"><i class="fa fa-trash-o"></i> Delete</button></a>
+                 
                   <button class="btn btn-default"><i class="fa fa-print"></i> Print</button>
                 </div><!-- /.box-footer -->
               </div><!-- /. box -->
