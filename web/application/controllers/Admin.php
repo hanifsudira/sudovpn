@@ -109,6 +109,25 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/sentBox',$data);
 		$this->load->view('admin/footer');
 	}
+	
+	public function read($mail)
+	{
+		if(!($this->session->userdata('logged_in') == TRUE && $this->session->userdata('email') == 'admin@gmail.com')) {
+			return redirect(site_url('admin/login'));
+		}
+		
+		$url="http://sudovpn.id:5002/readMessage/$mail";
+		$json = file_get_contents($url);
+		$data['list_inbox']= json_decode($json, TRUE);
+		
+		$this->load->view('admin/head');
+		$this->load->view('admin/nav');
+		$this->load->view('admin/sidebar');
+		$this->load->view('admin/readMail',$data);
+		$this->load->view('admin/footer');
+		
+	}
+	
 	public function compose()
 	{
 		if(!($this->session->userdata('logged_in') == TRUE && $this->session->userdata('email') == 'admin@gmail.com')) {

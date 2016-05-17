@@ -816,6 +816,7 @@ def listallInbox(page_id):
 	finally:
 		cursor.close()
 		con.close()
+		
 @app.route('/listallSent/<string:page_id>')
 def listallSent(page_id):
 	print "masuk"
@@ -833,7 +834,7 @@ def listallSent(page_id):
 						'message': wish[2],
 						'date': wish[3],
 						'status': wish[4],
-						
+						'id_message': str(wish[5]),
 						
 						
 			}
@@ -846,5 +847,36 @@ def listallSent(page_id):
 		cursor.close()
 		con.close()
 
+@app.route('/readMessage/<string:page_id>')
+def readMessage(page_id):
+	
+	try:
+		con = mysql.connect()
+		cursor = con.cursor()
+		cursor.callproc('SP_ReadMessage',(page_id,))
+		wishes = cursor.fetchall()
+
+		wishes_dict = []
+		for wish in wishes:
+			wish_dict = {
+						'fullname': wish[0],
+						'subject': wish[1],
+						'message': wish[2],
+						'date': wish[3],
+						'status': wish[4],
+						'id_message': str(wish[5]),
+						
+						
+						
+			}
+			wishes_dict.append(wish_dict)
+
+		return json.dumps(wishes_dict)
+	except Exception as e:
+		return json.dumps({'error':str(e)})
+	finally:
+		cursor.close()
+		con.close()
+		
 if __name__ == "__main__":
 	app.run(host='0.0.0.0',port=5002)

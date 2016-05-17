@@ -233,8 +233,8 @@ class Client extends CI_Controller {
 		
 		$this->load->view('client/head');
 		$this->load->view('client/nav',$data);
-		$this->load->view('client/sidebar',$outbox);
-		$this->load->view('client/sentBox');
+		$this->load->view('client/sidebar',$data);
+		$this->load->view('client/sentBox',$outbox);
 		$this->load->view('client/footer');
 	
 	}
@@ -252,9 +252,30 @@ class Client extends CI_Controller {
 		$this->load->view('client/head');
 		$this->load->view('client/nav',$data);
 		$this->load->view('client/sidebar',$data);
-		$this->load->view('client/composeUser',$id);
+		$this->load->view('client/composeUser');
 		$this->load->view('client/footer');
 	
+	}
+	public function read($mail){
+		if(!($this->session->userdata('logged_in') == TRUE || $this->session->userdata('id_user') != '') ) {
+			return redirect(site_url('home/login'));
+		}
+		$id = $this->session->userdata('id_user');
+		$url="http://sudovpn.id:5002/listperid/$id";
+		$json = file_get_contents($url);
+		$temp= json_decode($json, TRUE);
+		foreach($temp as $item){
+			$data['list']=$item;
+		}
+		$url="http://sudovpn.id:5002/readMessage/$mail";
+		$json = file_get_contents($url);
+		$inbox['list_inbox']= json_decode($json, TRUE);
+		
+		$this->load->view('client/head');
+		$this->load->view('client/nav',$data);
+		$this->load->view('client/sidebar',$data);
+		$this->load->view('client/readMail',$inbox);
+		$this->load->view('client/footer');
 	}
 	
 }

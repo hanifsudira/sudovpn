@@ -72,7 +72,7 @@
                         <tr>
                           <td><input type="checkbox"></td>
                           <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                          <td class="mailbox-name"><a href="#">Admin</a></td>
+                          <td class="mailbox-name"><a href="<?php echo base_url() ?>client/read/<?php echo $item['id_message']; ?>">Admin</a></td>
                           <td class="mailbox-subject"><b><?php echo $item['subject']; ?></b> - <?php echo $item['message']; ?></td>
                           <td class="mailbox-attachment"></td>
                           <td class="mailbox-date"><?php echo $item['date']; ?></td>
